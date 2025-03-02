@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Balatro"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+Events="*res://Common/Events/events.gd"
+SaveManager="*res://Common/SaveManager/save_manager.gd"
+SceneManager="*res://Common/SceneManager/scene_manager.gd"
+Tweens="*res://Common/Tweens/Tweens.gd"
+Constants="*res://constants.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+gdscript/warnings/untyped_declaration=1
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
+[global_group]
+
+persistable="Objects that are persistable and offer a save_data, load_data and get_save_id method"
