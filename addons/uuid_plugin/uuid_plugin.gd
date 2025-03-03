@@ -13,7 +13,7 @@ func _input(event: InputEvent) -> void:
 		_on_insert_uuid_command()
 
 func _enter_tree() -> void:
-	EditorInterface.get_command_palette().add_command("Insert UUID", "insert/uuid", _on_insert_uuid_command, "Ctrl+Shift+U")
+	EditorInterface.get_command_palette().add_command("Insert UUID", "insert/uuid", _on_insert_uuid_command, "Ctrl+Alt+U")
 
 func _exit_tree() -> void:
 	EditorInterface.get_command_palette().remove_command("insert/uuid")
@@ -22,7 +22,6 @@ func generate_uuid() -> String:
 	return UUID.v7()
 
 func _on_insert_uuid_command():
-	print("Called")
 	_get_editior().insert_text_at_caret(generate_uuid())
 
 func _get_editior() -> TextEdit:

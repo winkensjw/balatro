@@ -2,4 +2,6 @@
 * Localization
 * Tooltip Support
 * Working with Shaders
-* Create UUID context menu editor plugin
+* Working with Spritesheets
+* DataObjects
+* Create UUID context menu editor plugin :heavy_check_mark:
