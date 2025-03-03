@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6mgdxgom4q0q"
+path="res://.godot/imported/multhit2.ogg-d0cade73f3a9471e43717f9fc7d82892.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/multhit2.ogg"
+dest_files=["res://.godot/imported/multhit2.ogg-d0cade73f3a9471e43717f9fc7d82892.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

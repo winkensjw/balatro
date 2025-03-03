@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dw103d12fqexg"
+path="res://.godot/imported/holo1.ogg-cbf947efffd9ed43e03a57ac5c87ace8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/holo1.ogg"
+dest_files=["res://.godot/imported/holo1.ogg-cbf947efffd9ed43e03a57ac5c87ace8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

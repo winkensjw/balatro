@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cow17l3v8lg73"
+path="res://.godot/imported/negative.ogg-e747a53630f1a061d2052ac795b7c7a7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/negative.ogg"
+dest_files=["res://.godot/imported/negative.ogg-e747a53630f1a061d2052ac795b7c7a7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

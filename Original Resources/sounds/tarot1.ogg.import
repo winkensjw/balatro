@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b2gum3nunjbfx"
+path="res://.godot/imported/tarot1.ogg-aba70ebfa83687388ec15d929ac19766.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/tarot1.ogg"
+dest_files=["res://.godot/imported/tarot1.ogg-aba70ebfa83687388ec15d929ac19766.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bu5ynhoewvao3"
+path="res://.godot/imported/cardSlide1.ogg-13990124a26cd3248fc7b3c6421e8133.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/cardSlide1.ogg"
+dest_files=["res://.godot/imported/cardSlide1.ogg-13990124a26cd3248fc7b3c6421e8133.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

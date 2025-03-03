@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://07hwratay6ol"
+path="res://.godot/imported/chips2.ogg-4b893cf7192cc91dcc025a3fc2f08f7c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/chips2.ogg"
+dest_files=["res://.godot/imported/chips2.ogg-4b893cf7192cc91dcc025a3fc2f08f7c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

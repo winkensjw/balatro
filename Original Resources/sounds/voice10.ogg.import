@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://yslsqxt1j216"
+path="res://.godot/imported/voice10.ogg-719d21cbf85932e5d828be4bd6cd9309.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/voice10.ogg"
+dest_files=["res://.godot/imported/voice10.ogg-719d21cbf85932e5d828be4bd6cd9309.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

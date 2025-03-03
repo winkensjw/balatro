@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://djdf62kadm787"
+path="res://.godot/imported/paper1.ogg-c6166f950c844c872845f3b2a60ff50b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/paper1.ogg"
+dest_files=["res://.godot/imported/paper1.ogg-c6166f950c844c872845f3b2a60ff50b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

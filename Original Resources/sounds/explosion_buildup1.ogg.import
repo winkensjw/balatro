@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b2o01sviylneh"
+path="res://.godot/imported/explosion_buildup1.ogg-0c5afbfeda4f91c4b65626d954b349cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/explosion_buildup1.ogg"
+dest_files=["res://.godot/imported/explosion_buildup1.ogg-0c5afbfeda4f91c4b65626d954b349cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ljla4xg3jl8c"
+path="res://.godot/imported/ambientFire1.ogg-bddb8d9568c00cdaa3dff030e8ec373b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/ambientFire1.ogg"
+dest_files=["res://.godot/imported/ambientFire1.ogg-bddb8d9568c00cdaa3dff030e8ec373b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

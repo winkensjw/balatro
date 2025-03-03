@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvd13b83qk72u"
+path="res://.godot/imported/highlight1.ogg-25544c0e9d7c68e7a725dbd1e60e88d8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/highlight1.ogg"
+dest_files=["res://.godot/imported/highlight1.ogg-25544c0e9d7c68e7a725dbd1e60e88d8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bxwf8pqxw5cxm"
+path="res://.godot/imported/whoosh_long.ogg-7ca0ccb85b209cbdc0530d1ff4d8e902.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/whoosh_long.ogg"
+dest_files=["res://.godot/imported/whoosh_long.ogg-7ca0ccb85b209cbdc0530d1ff4d8e902.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

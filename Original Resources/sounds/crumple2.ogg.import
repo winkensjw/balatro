@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://buauooyyd4xsl"
+path="res://.godot/imported/crumple2.ogg-512c67f4925bee796726d0f52cbbf1b2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/crumple2.ogg"
+dest_files=["res://.godot/imported/crumple2.ogg-512c67f4925bee796726d0f52cbbf1b2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

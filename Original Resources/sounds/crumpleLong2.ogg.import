@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dbgihl6sov711"
+path="res://.godot/imported/crumpleLong2.ogg-3ae850a5d6442fbb14b1e76f2d6dc80f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/crumpleLong2.ogg"
+dest_files=["res://.godot/imported/crumpleLong2.ogg-3ae850a5d6442fbb14b1e76f2d6dc80f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

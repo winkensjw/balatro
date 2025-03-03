@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dtqb4301e1et7"
+path="res://.godot/imported/coin5.ogg-4dfca37232046e9343417816d58321b8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/coin5.ogg"
+dest_files=["res://.godot/imported/coin5.ogg-4dfca37232046e9343417816d58321b8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

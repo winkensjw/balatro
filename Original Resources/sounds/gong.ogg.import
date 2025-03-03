@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cviilm7l6egp1"
+path="res://.godot/imported/gong.ogg-aaba8d5a32cdeb84b10f9644bb06b04a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/gong.ogg"
+dest_files=["res://.godot/imported/gong.ogg-aaba8d5a32cdeb84b10f9644bb06b04a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

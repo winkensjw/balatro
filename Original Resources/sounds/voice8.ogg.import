@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cwl36eq7rdo2w"
+path="res://.godot/imported/voice8.ogg-5e79fe2ddd417de6bc533234e16a91aa.oggvorbisstr"
+
+[deps]
+
+source_file="res://Original Resources/sounds/voice8.ogg"
+dest_files=["res://.godot/imported/voice8.ogg-5e79fe2ddd417de6bc533234e16a91aa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
