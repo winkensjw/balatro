@@ -22,7 +22,7 @@ func _add_loading_screen(transition_type:String="fade_to_black") -> void:
 	
 func change_scenes(scene_to_load:String, load_into:Node=null, scene_to_unload:Node=null, transition_type:String="fade_to_black") -> void:
 	if _loading_in_progress:
-		push_warning("SceneManager is already loading something")
+		Log.warn("SceneManager is already loading something")
 		return
 	
 	_loading_in_progress = true
@@ -72,10 +72,10 @@ func _monitor_load_status() -> void:
 			return
 
 func _on_scene_failed_to_load(path:String) -> void:
-	push_error("error: Failed to load resource: '%s'" % [path])	
+	Log.error("error: Failed to load resource: '%s'" % [path])	
 
 func _on_scene_invalid(path:String) -> void:
-	push_error("error: Cannot load resource: '%s'" % [path])
+	Log.error("error: Cannot load resource: '%s'" % [path])
 	
 func _on_scene_finished_loading(incoming_scene : Node) -> void:
 	var outgoing_scene : Node = _scene_to_unload

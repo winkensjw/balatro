@@ -33,7 +33,7 @@ func _load_save_file() -> Dictionary:
 	var json : JSON = JSON.new()
 	var parse_result : Error = json.parse(json_string)
 	if not parse_result == OK:
-		push_error("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		Log.error(Strings.join("", ["JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line()]))
 		return {}
 	return json.data
 
@@ -50,13 +50,13 @@ func _collect_data() -> Dictionary:
 func _is_persistable(node : Node) -> bool:
 	var persistable : bool = true
 	if not node.has_method("save_data"):
-		push_error("Persistable node does not implement save_data!")
+		Log.error("Persistable node does not implement save_data!")
 		persistable = false
 	if not node.has_method("load_data"):
-		push_error("Persistable node does not implement load_data!")
+		Log.error("Persistable node does not implement load_data!")
 		persistable = false
 	if not node.has_method("get_save_id"):
-		push_error("Persistable node does not implement get_save_id!")
+		Log.error("Persistable node does not implement get_save_id!")
 		persistable = false
 	return persistable
 

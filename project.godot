@@ -16,11 +16,14 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Events="*res://Common/Events/events.gd"
-SaveManager="*res://Common/SaveManager/save_manager.gd"
-SceneManager="*res://Common/SceneManager/scene_manager.gd"
-Tweens="*res://Common/Tweens/Tweens.gd"
 Constants="*res://constants.gd"
+Strings="*res://Common/Utilities/String/strings.gd"
+Log="*res://Common/Log/log.gd"
+Events="*res://Common/Events/events.gd"
+Console="*res://addons/console/console.gd"
+SceneManager="*res://Common/SceneManager/scene_manager.gd"
+SaveManager="*res://Common/SaveManager/save_manager.gd"
+Tweens="*res://Common/Tweens/Tweens.gd"
 
 [debug]
 
@@ -35,7 +38,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/uuid_plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/uuid_plugin/plugin.cfg")
 
 [global_group]
 
