@@ -33,6 +33,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/uuid_plugin/plugin.cfg")
+
 [global_group]
 
 persistable="Objects that are persistable and offer a save_data, load_data and get_save_id method"
