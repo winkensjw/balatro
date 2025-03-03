@@ -3,5 +3,5 @@
 * Working with Shaders
 * Working with Spritesheets
 * DataObjects
-* Logging
+* DevConsole
 * Create UUID context menu editor plugin :heavy_check_mark:
