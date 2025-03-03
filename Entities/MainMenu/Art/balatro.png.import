@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btw2as0tg8qts"
-path="res://.godot/imported/balatro.png-7753fd1b05faac20c3581df434fd6c92.ctex"
+path="res://.godot/imported/balatro.png-0d2514d019794932920a0b8427ebac23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Original Resources/textures/2x/balatro.png"
-dest_files=["res://.godot/imported/balatro.png-7753fd1b05faac20c3581df434fd6c92.ctex"]
+source_file="res://Entities/MainMenu/Art/balatro.png"
+dest_files=["res://.godot/imported/balatro.png-0d2514d019794932920a0b8427ebac23.ctex"]
 
 [params]
 

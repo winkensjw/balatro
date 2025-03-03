@@ -1,3 +1,256 @@
-[gd_scene format=3 uid="uid://bod60lceunai5"]
+[gd_scene load_steps=16 format=3 uid="uid://bod60lceunai5"]
+
+[ext_resource type="Texture2D" uid="uid://btw2as0tg8qts" path="res://Entities/MainMenu/Art/balatro.png" id="1_rvbmr"]
+[ext_resource type="Script" path="res://Entities/MainMenu/main_menu.gd" id="1_wyf5m"]
+[ext_resource type="StyleBox" uid="uid://d4blnf4t173dw" path="res://Entities/MainMenu/Styles/menu_bar_background.tres" id="2_4ftbe"]
+[ext_resource type="Texture2D" uid="uid://jn0lajdwsic8" path="res://Entities/MainMenu/Art/icons.png" id="2_vek5v"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="3_f7m2u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgbqt"]
+bg_color = Color(2.52686e-07, 0.194869, 0.276419, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odc5k"]
+bg_color = Color(0.419608, 0.462745, 0.47451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0.117647, 0.152941, 0.168627, 1)
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_73xvi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hr7vh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahpub"]
+bg_color = Color(0.117647, 0.419608, 0.627451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pjg3"]
+atlas = ExtResource("2_vek5v")
+region = Rect2(0, 0, 128, 128)
+margin = Rect2(10, 10, 20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mioip"]
+bg_color = Color(0.101961, 0.145098, 0.141176, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(-5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgqk5"]
+atlas = ExtResource("2_vek5v")
+region = Rect2(0, 133, 132, 129)
+margin = Rect2(10, 10, 20, 20)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8o5b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6u28"]
+atlas = ExtResource("2_vek5v")
+region = Rect2(264, 0, 130, 130)
+margin = Rect2(0, 0, 32, 0)
 
 [node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_wyf5m")
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_hgbqt")
+
+[node name="Logo" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -413.0
+offset_top = -316.0
+offset_right = 253.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_rvbmr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="MenuBarContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LeftMenusContainer" type="PanelContainer" parent="MarginContainer/MenuBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_4ftbe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MenuBarContainer/LeftMenusContainer"]
+layout_mode = 2
+
+[node name="ProfileLabelContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 12
+
+[node name="ProfileLabel" type="Label" parent="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer/ProfileLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_f7m2u")
+theme_override_font_sizes/font_size = 24
+text = "Profile"
+
+[node name="ProfileButtonMarginContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ProfileButtonBackgroundPanel" type="PanelContainer" parent="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer/ProfileButtonMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_odc5k")
+
+[node name="ProfileButton" type="Button" parent="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer/ProfileButtonMarginContainer/ProfileButtonBackgroundPanel"]
+custom_minimum_size = Vector2(128, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f7m2u")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_73xvi")
+text = "P1"
+flat = true
+
+[node name="MiddleMenusContainer" type="PanelContainer" parent="MarginContainer/MenuBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = ExtResource("2_4ftbe")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MenuBarContainer/MiddleMenusContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/MenuBarContainer/MiddleMenusContainer/HBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/MenuBarContainer/MiddleMenusContainer/HBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/MenuBarContainer/MiddleMenusContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="CollectionButton" type="Button" parent="MarginContainer/MenuBarContainer/MiddleMenusContainer/HBoxContainer"]
+layout_mode = 2
+text = "Collection"
+
+[node name="RightMenusContainer" type="PanelContainer" parent="MarginContainer/MenuBarContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hr7vh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer"]
+layout_mode = 2
+
+[node name="SocialMenusMarginContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SocialMenusContainer" type="HBoxContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/SocialMenusMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DiscordCotainer" type="PanelContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/SocialMenusMarginContainer/SocialMenusContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ahpub")
+
+[node name="DiscordButton" type="TextureButton" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/SocialMenusMarginContainer/SocialMenusContainer/DiscordCotainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7pjg3")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="XContainer" type="PanelContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/SocialMenusMarginContainer/SocialMenusContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_mioip")
+
+[node name="XButton" type="TextureButton" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/SocialMenusMarginContainer/SocialMenusContainer/XContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_cgqk5")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LanguageMarginContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 5
+
+[node name="LanguageMenuBarBackgroundPanel" type="PanelContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_4ftbe")
+
+[node name="LanguageMenuBarMarginContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer/LanguageMenuBarBackgroundPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="LanguageButtonBackgroundPanel" type="PanelContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer/LanguageMenuBarBackgroundPanel/LanguageMenuBarMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_odc5k")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer/LanguageMenuBarBackgroundPanel/LanguageMenuBarMarginContainer/LanguageButtonBackgroundPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="LanguageButton" type="Button" parent="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer/LanguageMenuBarBackgroundPanel/LanguageMenuBarMarginContainer/LanguageButtonBackgroundPanel/MarginContainer"]
+custom_minimum_size = Vector2(132, 50)
+layout_mode = 2
+theme_override_constants/icon_max_width = 40
+theme_override_fonts/font = ExtResource("3_f7m2u")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o8o5b")
+text = "English"
+icon = SubResource("AtlasTexture_d6u28")
+flat = true
+
+[connection signal="pressed" from="MarginContainer/MenuBarContainer/LeftMenusContainer/VBoxContainer/ProfileButtonMarginContainer/ProfileButtonBackgroundPanel/ProfileButton" to="." method="_on_profile_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MenuBarContainer/RightMenusContainer/VBoxContainer/LanguageMarginContainer/LanguageMenuBarBackgroundPanel/LanguageMenuBarMarginContainer/LanguageButtonBackgroundPanel/MarginContainer/LanguageButton" to="." method="_on_language_button_pressed"]
