@@ -14,28 +14,3 @@ https://www.reddit.com/r/godot/comments/16vq15a/comment/k2uzy9x/?utm_source=shar
 4. for each addon, create a relative path symlink from `addons/whatever` to `../external/whatever/addons/whatever`.
 	
 5. commit the symlinks along with the submodules.
-
-
-Windows (CMD)
-
-```
-cd path\to\your\project
-mkdir external
-echo. > external\.gdignore
-REM Clone addons as submodules (replace "whatever" with actual addon name)
-git submodule add <repo_url> external\whatever
-git submodule update --init --recursive
-mklink /D addons\whatever ..\external\whatever\addons\whatever
-
-```
-Linux (Terminal)
-
-```
-cd /path/to/your/project
-mkdir external
-touch external/.gdignore
-# Clone addons as submodules (replace "whatever" with actual addon name)
-git submodule add <repo_url> external/whatever
-git submodule update --init --recursive
-ln -s ../external/whatever/addons/whatever addons/whatever
-```
