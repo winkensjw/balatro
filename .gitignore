@@ -16,3 +16,4 @@ mono_crash.*.json
 
 # Obsidian specific ignores
 Docs/balatro/.obsidian/*
+/.vscode
