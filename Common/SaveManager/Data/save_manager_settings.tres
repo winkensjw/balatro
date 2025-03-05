@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SaveManagerSettings" load_steps=2 format=3 uid="uid://y8o3y218s7wp"]
 
-[ext_resource type="Script" path="res://Common/SaveManager/save_manager_settings.gd" id="1_mkgxy"]
+[ext_resource type="Script" uid="uid://cos2ekri6yfym" path="res://Common/SaveManager/save_manager_settings.gd" id="1_mkgxy"]
 
 [resource]
 script = ExtResource("1_mkgxy")

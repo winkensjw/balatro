@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d13yggkw2yru4"]
 
-[ext_resource type="Script" path="res://Common/SceneManager/LoadingScreen/loading_screen.gd" id="1_k5r6i"]
+[ext_resource type="Script" uid="uid://ciunxggs1cll1" path="res://Common/SceneManager/LoadingScreen/loading_screen.gd" id="1_k5r6i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awhaq"]
 bg_color = Color(1, 1, 1, 1)
@@ -176,13 +176,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4w84n"]
 _data = {
-"RESET": SubResource("Animation_p3sxh"),
-"fade_from_black": SubResource("Animation_0hxau"),
-"fade_from_white": SubResource("Animation_lkml8"),
-"fade_to_black": SubResource("Animation_1jenp"),
-"fade_to_white": SubResource("Animation_3jprh"),
-"no_from_transition": SubResource("Animation_42xph"),
-"no_to_transition": SubResource("Animation_f4mu1")
+&"RESET": SubResource("Animation_p3sxh"),
+&"fade_from_black": SubResource("Animation_0hxau"),
+&"fade_from_white": SubResource("Animation_lkml8"),
+&"fade_to_black": SubResource("Animation_1jenp"),
+&"fade_to_white": SubResource("Animation_3jprh"),
+&"no_from_transition": SubResource("Animation_42xph"),
+&"no_to_transition": SubResource("Animation_f4mu1")
 }
 
 [node name="LoadingScreen" type="CanvasLayer"]
