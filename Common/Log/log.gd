@@ -7,4 +7,4 @@ func info(text : Variant) -> void:
 	ConsoleAdapter.info(text)
 	
 func warn(text : Variant) -> void:
-	ConsoleAdapter.warning(text)
+	ConsoleAdapter.warning(text) 

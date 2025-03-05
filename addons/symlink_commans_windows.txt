@@ -1,0 +1,3 @@
+Execute in project root
+
+mklink /D addons\console ..\external\godot-console\addons\console

@@ -20,10 +20,10 @@ Constants="*res://constants.gd"
 Strings="*res://Common/Utilities/String/strings.gd"
 Log="*res://Common/Log/log.gd"
 Events="*res://Common/Events/events.gd"
-Console="*res://addons/console/console.gd"
 SceneManager="*res://Common/SceneManager/scene_manager.gd"
 SaveManager="*res://Common/SaveManager/save_manager.gd"
 Tweens="*res://Common/Tweens/Tweens.gd"
+Console="*res://addons/console/console.gd"
 
 [debug]
 
