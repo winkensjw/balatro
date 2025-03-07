@@ -1,5 +1,6 @@
 class_name UUID
 
+
 static func v7(random: BaseRandom = BuildInRandom.new()) -> String:
 	var bytes = PackedByteArray()
 	bytes.resize(16)
@@ -29,8 +30,10 @@ static func v7(random: BaseRandom = BuildInRandom.new()) -> String:
 
 	return format(bytes)
 
+
 static func get_unix_time_ms() -> int:
 	return int(Time.get_unix_time_from_system() * 1000)
+
 
 static func format(bytes: PackedByteArray) -> String:
 	return "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x" % Array(bytes)

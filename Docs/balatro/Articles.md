@@ -14,3 +14,11 @@ https://www.reddit.com/r/godot/comments/16vq15a/comment/k2uzy9x/?utm_source=shar
 4. for each addon, create a relative path symlink from `addons/whatever` to `../external/whatever/addons/whatever`.
 	
 5. commit the symlinks along with the submodules.
+
+install
+[Scony](https://github.com/Scony)- [godot-gdscript-toolkit](https://github.com/Scony/godot-gdscript-toolkit)
+
+then install extension GDScript Formatter & Linter by Eddie Dover
+then install error lens extension
+oben in die leiste klicken "Show and run commands", dann "Format document with" dann "Configure default formatter" und dort "GDScript Formatter & Linter" auswählen.
+Dann in den Settings "Format on save" aktivieren.
