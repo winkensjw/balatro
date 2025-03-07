@@ -4,9 +4,6 @@ var current_scene : Node
 
 func _ready() -> void:
 	ConsoleAdapter.init()
-	Log.info("Console initialized")
-	Log.warn("Console initialized")
-	Log.error("Console initialized")
 	Events.load_complete.connect(_on_scene_changed)
 	Events.main_menu_closed.connect(_on_main_menu_closed)
 	# call this deferred as root node is not ready yet and scene manager is adding to that node
