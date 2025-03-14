@@ -8,7 +8,12 @@ func _ready() -> void:
 	Events.load_complete.connect(_on_scene_changed)
 	Events.main_menu_closed.connect(_on_main_menu_closed)
 	# call this deferred as root node is not ready yet and scene manager is adding to that node
+	_add_audio()
 	_add_main_menu.call_deferred()
+
+
+func _add_audio() -> void:
+	add_child(load(Constants.AUDIO_SCENE_PATH).instantiate())
 
 
 func _add_main_menu() -> void:

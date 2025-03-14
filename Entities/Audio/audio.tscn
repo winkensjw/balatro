@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwcagyfjgmt32"]
+
+[ext_resource type="Script" uid="uid://c5qc734pysuk6" path="res://addons/resonate/music_manager/music_bank.gd" id="1_kwttv"]
+[ext_resource type="Script" uid="uid://dgihdugfw6sx2" path="res://addons/resonate/music_manager/music_track_resource.gd" id="2_u2bi7"]
+[ext_resource type="Script" uid="uid://nhtytsdam2n2" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="3_cwlua"]
+[ext_resource type="AudioStream" uid="uid://lauwxua3imlp" path="res://Entities/Audio/audio/music1.ogg" id="4_ltpfl"]
+
+[sub_resource type="Resource" id="Resource_6tma1"]
+script = ExtResource("3_cwlua")
+name = "music1"
+enabled = true
+volume = 0.0
+stream = ExtResource("4_ltpfl")
+metadata/_custom_type_script = "uid://nhtytsdam2n2"
+
+[sub_resource type="Resource" id="Resource_uoaag"]
+script = ExtResource("2_u2bi7")
+name = "background_music"
+bus = ""
+stems = Array[ExtResource("3_cwlua")]([SubResource("Resource_6tma1")])
+metadata/_custom_type_script = "uid://dgihdugfw6sx2"
+
+[node name="Audio" type="Node"]
+
+[node name="MusicBank" type="Node" parent="."]
+script = ExtResource("1_kwttv")
+label = "music"
+tracks = Array[ExtResource("2_u2bi7")]([SubResource("Resource_uoaag")])
+metadata/_custom_type_script = "uid://c5qc734pysuk6"
