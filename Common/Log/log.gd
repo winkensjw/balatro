@@ -11,3 +11,9 @@ func info(text: Variant) -> void:
 
 func warn(text: Variant) -> void:
 	ConsoleAdapter.warning(text)
+
+
+func debug(text: Variant) -> void:
+	if not ConsoleAdapter.debug_enabled:
+		return  # FIXME add this to the console for good
+	ConsoleAdapter.info(text)

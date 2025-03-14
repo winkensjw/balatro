@@ -31,3 +31,5 @@ text = "Volume"
 
 [node name="VolumeSlider" parent="VolumeSliderVBoxContainer" instance=ExtResource("2_5vq3l")]
 layout_mode = 2
+
+[connection signal="value_changed" from="VolumeSliderVBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

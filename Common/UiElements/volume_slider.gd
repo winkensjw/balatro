@@ -5,8 +5,22 @@ extends Control
 @export var m_property_name: String = ""
 @export var m_display_text: String = ""
 
-@onready var volume_slider_label: Label = $VolumeSliderVBoxContainer/VolumeSliderLabel
+@onready var m_volume_slider_label: Label = $VolumeSliderVBoxContainer/VolumeSliderLabel
+@onready var m_volume_slider: HSlider = $VolumeSliderVBoxContainer/VolumeSlider
 
 
 func _ready() -> void:
-	volume_slider_label.text = m_display_text
+	m_volume_slider_label.text = m_display_text
+	set_value(ResonateAdapter.get_volume_db(m_property_name))
+
+
+func get_value() -> float:
+	return linear_to_db(m_volume_slider.value / 100.0)
+
+
+func set_value(volume_db: float) -> void:
+	m_volume_slider.value = clamp(db_to_linear(volume_db) * 100, 0, 100)
+
+
+func _on_volume_slider_value_changed(_value: float) -> void:
+	Events.volume_changed.emit(m_property_name, get_value())

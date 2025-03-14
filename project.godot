@@ -35,6 +35,7 @@ Tweens="*res://Common/Tweens/Tweens.gd"
 Console="*res://addons/console/console.gd"
 SoundManager="*res://addons/resonate/sound_manager/sound_manager.gd"
 MusicManager="*res://addons/resonate/music_manager/music_manager.gd"
+ResonateAdapter="*res://addons/resonate/adaptions/resonate_adapter.gd"
 
 [debug]
 

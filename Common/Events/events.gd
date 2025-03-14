@@ -12,5 +12,5 @@ signal scene_failed_to_load(scene_path: String)
 # Main Menu
 signal main_menu_closed
 signal quit_game_requested
-
+signal volume_changed(property_name: String, value: float)
 # Add events here
