@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjombp0v3kvek"]
+
+[ext_resource type="Script" uid="uid://bunin2kex87xt" path="res://Common/UiElements/mode_selector.gd" id="1_7rhdc"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_trhym"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwd6f"]
+bg_color = Color(0.992157, 0.258824, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m40jt"]
+
+[node name="ModeSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -2.0
+offset_bottom = 62.0
+script = ExtResource("1_7rhdc")
+
+[node name="ModeSelectorHbox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.5
+offset_right = 180.5
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+
+[node name="PreviousButtonPanelContainer" type="PanelContainer" parent="ModeSelectorHbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="PreviousButton" type="Button" parent="ModeSelectorHbox/PreviousButtonPanelContainer"]
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_trhym")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "<"
+flat = true
+
+[node name="ValuePanelContainer" type="PanelContainer" parent="ModeSelectorHbox"]
+custom_minimum_size = Vector2(265, 64)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="ValueLabel" type="Label" parent="ModeSelectorHbox/ValuePanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_trhym")
+theme_override_font_sizes/font_size = 40
+text = "Mode"
+
+[node name="NextButtonPanelContainer" type="PanelContainer" parent="ModeSelectorHbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="NextButton" type="Button" parent="ModeSelectorHbox/NextButtonPanelContainer"]
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_trhym")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = ">"
+flat = true
+
+[connection signal="pressed" from="ModeSelectorHbox/PreviousButtonPanelContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="ModeSelectorHbox/NextButtonPanelContainer/NextButton" to="." method="_on_next_button_pressed"]

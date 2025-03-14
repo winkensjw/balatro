@@ -9,6 +9,10 @@ const AUDIO_SCENE_PATH: String = "res://Entities/Audio/audio.tscn"
 
 # Entities
 const GAME_SCENE_PATH: String = "res://Entities/Game/game.tscn"
+
+# Main Menu
 const MAIN_MENU_SCENE_PATH: String = "res://Entities/MainMenu/main_menu.tscn"
+const OPTIONS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/options_dialog.tscn"
+const SETTINGS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/settings_dialog.tscn"
 
 # Put constants here

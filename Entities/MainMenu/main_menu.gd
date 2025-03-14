@@ -1,4 +1,8 @@
+# Main Menu
+class_name MainMenu
 extends CanvasLayer
+
+@onready var options_dialog_scene: PackedScene = preload(Constants.OPTIONS_DIALOG_SCENE_PATH)
 
 
 func _ready() -> void:
@@ -23,6 +27,8 @@ func _on_quit_button_pressed() -> void:
 
 func _on_options_button_pressed() -> void:
 	Log.info("Options button pressed")
+	var options_dialog: OptionsDialog = options_dialog_scene.instantiate()
+	add_child(options_dialog)
 
 
 func _on_play_button_pressed() -> void:

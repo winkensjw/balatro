@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://6wvkgl2ituqf"]
+
+[ext_resource type="Script" uid="uid://ciqw5pg26kl1b" path="res://Common/UiElements/volume_slider.gd" id="1_5vq3l"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_aaype"]
+[ext_resource type="PackedScene" uid="uid://bff432m112vb7" path="res://Common/UiElements/slider.tscn" id="2_5vq3l"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 100.0
+size_flags_horizontal = 4
+script = ExtResource("1_5vq3l")
+
+[node name="VolumeSliderVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="VolumeSliderLabel" type="Label" parent="VolumeSliderVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_aaype")
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+
+[node name="VolumeSlider" parent="VolumeSliderVBoxContainer" instance=ExtResource("2_5vq3l")]
+layout_mode = 2

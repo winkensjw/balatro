@@ -1,0 +1,293 @@
+[gd_scene load_steps=19 format=3 uid="uid://q0vky2ysm4of"]
+
+[ext_resource type="Script" uid="uid://qbl14x6dyi00" path="res://Entities/MainMenu/Dialogs/settings_dialog.gd" id="1_73ijf"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_dva61"]
+[ext_resource type="PackedScene" uid="uid://cjombp0v3kvek" path="res://Common/UiElements/mode_selector.tscn" id="3_dva61"]
+[ext_resource type="Script" uid="uid://5cmyx4sp8s7v" path="res://Common/UiElements/mode.gd" id="4_i4411"]
+[ext_resource type="PackedScene" uid="uid://6wvkgl2ituqf" path="res://Common/UiElements/volume_slider.tscn" id="5_0tr00"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q3g13"]
+bg_color = Color(0.192157, 0.301961, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.694118, 0.760784, 0.819608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwd6f"]
+bg_color = Color(0.992157, 0.258824, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m40jt"]
+
+[sub_resource type="Resource" id="Resource_ofje7"]
+script = ExtResource("4_i4411")
+m_display_text = "1"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_0tr00"]
+script = ExtResource("4_i4411")
+m_display_text = "2"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_chcsm"]
+script = ExtResource("4_i4411")
+m_display_text = "3"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_3xuop"]
+script = ExtResource("4_i4411")
+m_display_text = "4"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_i4411"]
+script = ExtResource("4_i4411")
+m_display_text = "Full Screen"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_1lu6o"]
+script = ExtResource("4_i4411")
+m_display_text = "Windowed"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_2iqrk"]
+script = ExtResource("4_i4411")
+m_display_text = "Borderless"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_yqewf"]
+script = ExtResource("4_i4411")
+m_display_text = "On"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="Resource" id="Resource_aalqs"]
+script = ExtResource("4_i4411")
+m_display_text = "Off"
+metadata/_custom_type_script = "uid://5cmyx4sp8s7v"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg23e"]
+bg_color = Color(0.921569, 0.568627, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(3, 5)
+
+[node name="SettingsDialog" type="PanelContainer"]
+custom_minimum_size = Vector2(900, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -400.0
+offset_right = 450.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q3g13")
+script = ExtResource("1_73ijf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="ButtonBarContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="GameButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="GameButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/GameButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Game"
+flat = true
+
+[node name="VideoButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="VideoButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/VideoButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Video
+"
+flat = true
+
+[node name="GraphicsButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="GraphicsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/GraphicsButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Graphics"
+flat = true
+
+[node name="AudioButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="AudioButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/AudioButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Audio
+"
+flat = true
+
+[node name="GameContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GameContainer"]
+layout_mode = 2
+
+[node name="GameSpeedVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GameContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GameContainer/VBoxContainer/GameSpeedVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 32
+text = "Game Speed"
+
+[node name="GameSpeedModeSelector" parent="MarginContainer/VBoxContainer/GameContainer/VBoxContainer/GameSpeedVBoxContainer" instance=ExtResource("3_dva61")]
+layout_mode = 2
+m_available_modes = Array[ExtResource("4_i4411")]([SubResource("Resource_ofje7"), SubResource("Resource_0tr00"), SubResource("Resource_chcsm"), SubResource("Resource_3xuop")])
+
+[node name="VideoContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WindowModeVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VideoContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VideoContainer/WindowModeVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 32
+text = "Window Mode"
+
+[node name="WindowModeModeSelector" parent="MarginContainer/VBoxContainer/VideoContainer/WindowModeVBoxContainer" instance=ExtResource("3_dva61")]
+layout_mode = 2
+m_available_modes = Array[ExtResource("4_i4411")]([SubResource("Resource_i4411"), SubResource("Resource_1lu6o"), SubResource("Resource_2iqrk")])
+
+[node name="GraphicsContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShadowsVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GraphicsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GraphicsContainer/ShadowsVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 32
+text = "Shadows"
+
+[node name="ShadowModeSelector" parent="MarginContainer/VBoxContainer/GraphicsContainer/ShadowsVBoxContainer" instance=ExtResource("3_dva61")]
+layout_mode = 2
+m_available_modes = Array[ExtResource("4_i4411")]([SubResource("Resource_yqewf"), SubResource("Resource_aalqs")])
+
+[node name="AudioContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="MasterVolume" parent="MarginContainer/VBoxContainer/AudioContainer/VBoxContainer" instance=ExtResource("5_0tr00")]
+layout_mode = 2
+m_property_name = "master"
+m_display_text = "Master Volume"
+
+[node name="MusicVolume" parent="MarginContainer/VBoxContainer/AudioContainer/VBoxContainer" instance=ExtResource("5_0tr00")]
+layout_mode = 2
+m_property_name = "music"
+m_display_text = "Music Volume"
+
+[node name="GameVolume" parent="MarginContainer/VBoxContainer/AudioContainer/VBoxContainer" instance=ExtResource("5_0tr00")]
+layout_mode = 2
+m_property_name = "game"
+m_display_text = "Game Volume"
+
+[node name="BackButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lg23e")
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BackButtonPanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dva61")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Back
+"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/GameButtonPanelContainer/GameButton" to="." method="_on_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/VideoButtonPanelContainer/VideoButton" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/GraphicsButtonPanelContainer/GraphicsButton" to="." method="_on_graphics_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/AudioButtonPanelContainer/AudioButton" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButtonPanelContainer/BackButton" to="." method="_on_back_button_pressed"]
