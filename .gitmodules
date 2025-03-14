@@ -1,3 +1,6 @@
 [submodule "external/godot-console"]
 	path = external/godot-console
 	url = https://github.com/winkensjw/godot-console.git
+[submodule "external/resonate"]
+	path = external/resonate
+	url = https://github.com/winkensjw/resonate.git
