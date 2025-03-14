@@ -1,13 +1,28 @@
-[gd_scene load_steps=21 format=3 uid="uid://bod60lceunai5"]
+[gd_scene load_steps=23 format=3 uid="uid://bod60lceunai5"]
 
 [ext_resource type="Texture2D" uid="uid://btw2as0tg8qts" path="res://Entities/MainMenu/Art/balatro.png" id="1_rvbmr"]
 [ext_resource type="Script" uid="uid://dtkgbwhgc02r2" path="res://Entities/MainMenu/main_menu.gd" id="1_wyf5m"]
 [ext_resource type="StyleBox" uid="uid://d4blnf4t173dw" path="res://Entities/MainMenu/Styles/menu_bar_background.tres" id="2_4ftbe"]
+[ext_resource type="Shader" uid="uid://bcbhnq13t4a0t" path="res://Entities/MainMenu/balatro_background.gdshader" id="2_m40jt"]
 [ext_resource type="Texture2D" uid="uid://jn0lajdwsic8" path="res://Entities/MainMenu/Art/icons.png" id="2_vek5v"]
 [ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="3_f7m2u"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgbqt"]
-bg_color = Color(2.52686e-07, 0.194869, 0.276419, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6rlah"]
+shader = ExtResource("2_m40jt")
+shader_parameter/spin_rotation_speed = 2.0
+shader_parameter/move_speed = 7.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.871, 0.267, 0.231, 1)
+shader_parameter/colour_2 = Color(0, 0.42, 0.706, 1)
+shader_parameter/colour_3 = Color(0.086, 0.137, 0.145, 1)
+shader_parameter/contrast = 3.5
+shader_parameter/lighting = 0.4
+shader_parameter/spin_amount = 0.25
+shader_parameter/pixel_filter = 740.0
+shader_parameter/is_rotating = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bbw1"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odc5k"]
 bg_color = Color(0.419608, 0.462745, 0.47451, 1)
@@ -100,13 +115,14 @@ margin = Rect2(0, 0, 32, 0)
 script = ExtResource("1_wyf5m")
 
 [node name="Background" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_6rlah")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_hgbqt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bbw1")
 
 [node name="Logo" type="TextureRect" parent="."]
 anchors_preset = 8
