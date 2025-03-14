@@ -18,7 +18,7 @@ func _on_collection_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	Log.info("Quit button pressed")
+	Events.quit_game_requested.emit()
 
 
 func _on_options_button_pressed() -> void:
