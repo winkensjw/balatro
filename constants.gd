@@ -6,6 +6,8 @@ const SAVE_MANAGER_SETTINGS_RESOURCE_PATH: String = "res://Common/SaveManager/Da
 
 # Audio
 const AUDIO_SCENE_PATH: String = "res://Entities/Audio/audio.tscn"
+const MUSIC_BANK_NAME: String = "music"
+const MUSIC_TRACK_BACKGROUND_MUSIC_NAME: String = "background_music"
 
 # Entities
 const GAME_SCENE_PATH: String = "res://Entities/Game/game.tscn"
@@ -14,5 +16,3 @@ const GAME_SCENE_PATH: String = "res://Entities/Game/game.tscn"
 const MAIN_MENU_SCENE_PATH: String = "res://Entities/MainMenu/main_menu.tscn"
 const OPTIONS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/options_dialog.tscn"
 const SETTINGS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/settings_dialog.tscn"
-
-# Put constants here

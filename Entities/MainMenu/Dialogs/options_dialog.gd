@@ -1,25 +1,40 @@
-# Options Dialog
+# =============================================================================
+# OptionsDialog.gd
+# =============================================================================
+# This script defines the behavior of the options dialog, which allows the user
+# to access various sub-menus such as settings, credits, and stats.
+#
+# @author winkensjw
+# @version 1.0
+# =============================================================================
 class_name OptionsDialog
 extends PanelContainer
 
-@onready var settings_dialog_scene: PackedScene = preload(Constants.SETTINGS_DIALOG_SCENE_PATH)
+## Logger instance for this class.
+var _log: Log = Log.new(self.name)
+
+## The PackedScene for the Settings Dialog.
+@onready var _settings_dialog_scene: PackedScene = preload(Constants.SETTINGS_DIALOG_SCENE_PATH)
 
 
+## Called when the back button is pressed.
 func _on_back_button_pressed() -> void:
-	Log.info("Back Button pressed!")
-	# FIXME save data
+	_log.debug("Back Button pressed")
 	queue_free()
 
 
+## Called when the credits button is pressed.
 func _on_credits_button_pressed() -> void:
-	Log.info("Credits Button pressed!")
+	_log.debug("Credits Button pressed")
 
 
+## Called when the stats button is pressed.
 func _on_stats_button_pressed() -> void:
-	Log.info("Stats Button pressed!")
+	_log.debug("Stats Button pressed")
 
 
+## Called when the settings button is pressed.
+## Instantiates the settings dialog scene and adds it as a child.
 func _on_settings_button_pressed() -> void:
-	Log.info("Settings Button pressed!")
-	var settings_dialog: SettingsDialog = settings_dialog_scene.instantiate()
-	add_child(settings_dialog)
+	_log.debug("Settings Button pressed")
+	add_child(_settings_dialog_scene.instantiate())

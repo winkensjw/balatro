@@ -1,3 +1,15 @@
+# =============================================================================
+# events.gd
+# =============================================================================
+# This script defines a singleton node that holds signals used for communication
+# between different parts of the game. This allows for a decoupled architecture
+# where components can react to events without needing direct references to each
+# other.
+#
+# @author winkensjw
+# @version 1.0
+# =============================================================================
+
 extends Node
 
 # Scene Manager

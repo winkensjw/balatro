@@ -27,7 +27,6 @@ manager/music/bus="Music"
 
 Constants="*res://constants.gd"
 Strings="*res://Common/Utilities/String/strings.gd"
-Log="*res://Common/Log/log.gd"
 Events="*res://Common/Events/events.gd"
 SceneManager="*res://Common/SceneManager/scene_manager.gd"
 SaveManager="*res://Common/SaveManager/save_manager.gd"
@@ -51,7 +50,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/resonate/plugin.cfg", "res://addons/uuid_plugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/resonate/plugin.cfg")
 
 [global_group]
 
