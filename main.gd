@@ -28,14 +28,19 @@ func _ready() -> void:
 	Events.main_menu_closed.connect(_on_main_menu_closed)
 	Events.quit_game_requested.connect(_on_quit_game_requested)
 
-	## Adds the audio and main menu to the game.
 	_add_audio()
+	_add_crt()
 	_add_main_menu.call_deferred()
 
 
 ## Adds the audio scene to the game.
 func _add_audio() -> void:
 	add_child(load(Constants.AUDIO_SCENE_PATH).instantiate())
+
+
+## Adds the crt filter to the game.
+func _add_crt() -> void:
+	add_child(load(Constants.CRT_FTILER_SCENE_PATH).instantiate())
 
 
 ## Adds the main menu scene to the game.

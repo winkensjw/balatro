@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://udywh8o3poa4"]
+
+[ext_resource type="Shader" uid="uid://duuvw6pc5wiou" path="res://Common/UiElements/crt_filter.gdshader" id="1_odbc8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
+shader = ExtResource("1_odbc8")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.05
+shader_parameter/warp_amount = 0.0
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(1, 1, 1, 0)
+
+[node name="CrtFilter" type="CanvasLayer"]
+layer = 128
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_h2yge")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xm2m")
