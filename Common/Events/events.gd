@@ -26,4 +26,7 @@ signal main_menu_closed
 signal quit_game_requested
 signal settings_changed
 
+signal show_dialog(dialog: PackedScene, animate: bool)
+signal close_dialog(dialog: Control, animate: bool)
+
 # Add events here

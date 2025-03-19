@@ -30,6 +30,7 @@ func _ready() -> void:
 
 	_add_audio()
 	_add_crt()
+	_add_modal_manager()
 	_add_main_menu.call_deferred()
 
 
@@ -41,6 +42,10 @@ func _add_audio() -> void:
 ## Adds the crt filter to the game.
 func _add_crt() -> void:
 	add_child(load(Constants.CRT_FTILER_SCENE_PATH).instantiate())
+
+
+func _add_modal_manager() -> void:
+	add_child(ModalManager.new())
 
 
 ## Adds the main menu scene to the game.
