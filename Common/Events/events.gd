@@ -20,13 +20,15 @@ signal transition_in_complete
 signal scene_finished_loading(scene: Node)
 signal scene_invalid(scene_path: String)
 signal scene_failed_to_load(scene_path: String)
+signal change_current_scene(scene_path: String)
+
+# Modal Manager
+signal show_dialog(dialog: PackedScene, animate: bool)
+signal close_dialog(dialog: Control, animate: bool)
 
 # Main Menu
 signal main_menu_closed
 signal quit_game_requested
 signal settings_changed
-
-signal show_dialog(dialog: PackedScene, animate: bool)
-signal close_dialog(dialog: Control, animate: bool)
 
 # Add events here

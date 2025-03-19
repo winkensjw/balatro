@@ -8,3 +8,7 @@
 # =============================================================================
 class_name ModalDialog
 extends PanelContainer
+
+
+func close(animated: bool) -> void:
+	Events.close_dialog.emit(self, animated)

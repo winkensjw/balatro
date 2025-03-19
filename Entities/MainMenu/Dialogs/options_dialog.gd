@@ -20,7 +20,7 @@ var _log: Log = Log.new(self.name)
 ## Called when the back button is pressed.
 func _on_back_button_pressed() -> void:
 	_log.debug("Back Button pressed")
-	Events.close_dialog.emit(self, true)
+	close(true)
 
 
 ## Called when the credits button is pressed.

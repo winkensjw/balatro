@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmvp3utjje303"]
+
+[ext_resource type="Script" uid="uid://bdnwqr00joftt" path="res://Entities/MainMenu/Dialogs/game_setup_dialog.gd" id="1_5r26v"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_6pftk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jkps"]
+bg_color = Color(0.192157, 0.301961, 0.309804, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.694118, 0.760784, 0.819608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwd6f"]
+bg_color = Color(0.992157, 0.258824, 0.227451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m40jt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5r26v"]
+bg_color = Color(0, 0.576471, 0.968627, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(3, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg23e"]
+bg_color = Color(0.921569, 0.568627, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(3, 5)
+
+[node name="GameSetupDialog" type="PanelContainer"]
+custom_minimum_size = Vector2(900, 800)
+offset_right = 900.0
+offset_bottom = 800.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jkps")
+script = ExtResource("1_5r26v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="ButtonBarContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="NewRunButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="NewRunButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/NewRunButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6pftk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "New Run"
+flat = true
+
+[node name="ContinueButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/ContinueButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6pftk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Continue
+"
+flat = true
+
+[node name="ChallengesButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonBarContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_jwd6f")
+
+[node name="ChallengesButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonBarContainer/ChallengesButtonPanelContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6pftk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Challenges"
+flat = true
+
+[node name="NewRunContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContinueContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChallengesContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayButtonMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="PlayButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PlayButtonMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5r26v")
+
+[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/PlayButtonMarginContainer/PlayButtonPanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6pftk")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "PLAY
+"
+flat = true
+
+[node name="BackButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lg23e")
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BackButtonPanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6pftk")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m40jt")
+text = "Back
+"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButtonMarginContainer/PlayButtonPanelContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButtonPanelContainer/BackButton" to="." method="_on_back_button_pressed"]

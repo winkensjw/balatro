@@ -17,6 +17,7 @@ var _log: Log = Log.new(self.name)
 
 ## PackedScene for the Options Dialog.
 @onready var _options_dialog_scene: PackedScene = preload(Constants.OPTIONS_DIALOG_SCENE_PATH)
+@onready var _game_setup_scene: PackedScene = preload(Constants.GAME_SETUP_DIALOG_SCENE_PATH)
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -49,9 +50,10 @@ func _on_quit_button_pressed() -> void:
 ## Called when the options button is pressed.
 func _on_options_button_pressed() -> void:
 	_log.debug("Options button pressed")
-	Events.show_dialog.emit(_options_dialog_scene, true)  # No longer creates the dialog.
+	Events.show_dialog.emit(_options_dialog_scene, true)
 
 
 ## Called when the play button is pressed.
 func _on_play_button_pressed() -> void:
 	_log.debug("Play button pressed")
+	Events.show_dialog.emit(_game_setup_scene, true)

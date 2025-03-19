@@ -25,8 +25,9 @@ func _ready() -> void:
 
 	## Connects signals for scene loading, main menu closing, and quit requests.
 	Events.load_complete.connect(_on_scene_changed)
-	Events.main_menu_closed.connect(_on_main_menu_closed)
 	Events.quit_game_requested.connect(_on_quit_game_requested)
+
+	Events.change_current_scene.connect(_on_scene_change_requested)
 
 	_add_audio()
 	_add_crt()
@@ -60,8 +61,8 @@ func _on_scene_changed(loaded_scene: Node) -> void:
 
 
 ## Called when the main menu is closed.
-func _on_main_menu_closed() -> void:
-	SceneManager.change_scenes(Constants.GAME_SCENE_PATH, self, _current_scene)
+func _on_scene_change_requested(scene_path: String) -> void:
+	SceneManager.change_scenes(scene_path, self, _current_scene)
 
 
 ## Called when the game is requested to quit.
