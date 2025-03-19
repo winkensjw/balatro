@@ -291,7 +291,6 @@ text = "Back
 "
 flat = true
 
-[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/GameButtonPanelContainer/GameButton" to="." method="_on_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/VideoButtonPanelContainer/VideoButton" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonBarContainer/GraphicsButtonPanelContainer/GraphicsButton" to="." method="_on_graphics_button_pressed"]
