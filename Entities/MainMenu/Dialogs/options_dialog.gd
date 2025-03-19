@@ -8,19 +8,19 @@
 # @version 1.0
 # =============================================================================
 class_name OptionsDialog
-extends PanelContainer
+extends ModalDialog
 
 ## Logger instance for this class.
 var _log: Log = Log.new(self.name)
 
-## The PackedScene for the Settings Dialog.
+## PackedScene for the Settings Dialog.
 @onready var _settings_dialog_scene: PackedScene = preload(Constants.SETTINGS_DIALOG_SCENE_PATH)
 
 
 ## Called when the back button is pressed.
 func _on_back_button_pressed() -> void:
 	_log.debug("Back Button pressed")
-	queue_free()
+	Events.close_dialog.emit(self, true)
 
 
 ## Called when the credits button is pressed.
@@ -37,4 +37,4 @@ func _on_stats_button_pressed() -> void:
 ## Instantiates the settings dialog scene and adds it as a child.
 func _on_settings_button_pressed() -> void:
 	_log.debug("Settings Button pressed")
-	add_child(_settings_dialog_scene.instantiate())
+	Events.show_dialog.emit(_settings_dialog_scene, true)

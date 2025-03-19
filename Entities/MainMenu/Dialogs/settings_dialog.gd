@@ -10,7 +10,7 @@
 # =============================================================================
 
 class_name SettingsDialog
-extends PanelContainer
+extends ModalDialog
 
 ## Logger instance for this class.
 var _log: Log = Log.new(self.name)
@@ -44,6 +44,13 @@ func _ready() -> void:
 	_load_current_settings()
 
 
+## Called when the back button is pressed.
+func _on_back_button_pressed() -> void:
+	_log.debug("Back Button pressed")
+	SaveManager.save_data()
+	Events.close_dialog.emit(self, true)
+
+
 ## Loads the current settings and applies them to the UI.
 func _load_current_settings() -> void:
 	_game_speed_mode_selector.set_selected_mode(Globals._game_speed_to_string(Globals._game_speed))
@@ -53,13 +60,6 @@ func _load_current_settings() -> void:
 	_master_volume_slider.set_value(Globals._master_volume_db)
 	_music_volume_slider.set_value(Globals._music_volume_db)
 	_game_volume_slider.set_value(Globals._game_volume_db)
-
-
-## Called when the back button is pressed.
-func _on_back_button_pressed() -> void:
-	_log.debug("Back Button pressed")
-	SaveManager.save_data()
-	queue_free()
 
 
 ## Called when the game button is pressed.

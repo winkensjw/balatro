@@ -15,6 +15,7 @@ extends CanvasLayer
 ## Logger instance for this class.
 var _log: Log = Log.new(self.name)
 
+## PackedScene for the Options Dialog.
 @onready var _options_dialog_scene: PackedScene = preload(Constants.OPTIONS_DIALOG_SCENE_PATH)
 
 
@@ -48,7 +49,7 @@ func _on_quit_button_pressed() -> void:
 ## Called when the options button is pressed.
 func _on_options_button_pressed() -> void:
 	_log.debug("Options button pressed")
-	add_child(_options_dialog_scene.instantiate())
+	Events.show_dialog.emit(_options_dialog_scene, true)  # No longer creates the dialog.
 
 
 ## Called when the play button is pressed.
