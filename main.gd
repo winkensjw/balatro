@@ -8,7 +8,7 @@
 # @version 1.0
 # =============================================================================
 
-extends Node2D
+extends Node
 
 ## The log object used throughout the game for logging messages.
 ## It is initialized with the name of this script's class.
