@@ -1,14 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceoibahaxdmrm"]
+[gd_scene load_steps=6 format=3 uid="uid://ceoibahaxdmrm"]
+
+[ext_resource type="PackedScene" uid="uid://c7cdo73n4urua" path="res://Entities/Game/game_state_control.tscn" id="1_86lv3"]
+[ext_resource type="Shader" uid="uid://upu7q5shusck" path="res://Entities/Game/game_background.gdshader" id="1_idflj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krqhw"]
 bg_color = Color(0.935592, 5.10186e-06, 0.580486, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idflj"]
+shader = ExtResource("1_idflj")
+shader_parameter/spin_rotation_speed = 100.0
+shader_parameter/move_speed = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.317607, 0.637742, 0.513136, 1)
+shader_parameter/colour_2 = Color(0.29191, 0.529429, 0.442813, 1)
+shader_parameter/colour_3 = Color(0.239213, 0.464562, 0.374012, 1)
+shader_parameter/contrast = 3.685
+shader_parameter/lighting = 0.165
+shader_parameter/spin_amount = 0.0
+shader_parameter/pixel_filter = 700.0
+shader_parameter/is_rotating = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86lv3"]
+bg_color = Color(0.4277, 0.815631, 0.641724, 1)
+
 [node name="Game" type="CanvasLayer"]
 
 [node name="DebugPanel" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_krqhw")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_idflj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86lv3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+
+[node name="GameStatePanel" parent="MarginContainer" instance=ExtResource("1_86lv3")]
+layout_mode = 2
+size_flags_horizontal = 0
