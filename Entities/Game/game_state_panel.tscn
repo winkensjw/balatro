@@ -1,10 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://c7cdo73n4urua"]
+[gd_scene load_steps=27 format=3 uid="uid://c7cdo73n4urua"]
 
+[ext_resource type="Script" uid="uid://bhmjmqlt8kke3" path="res://Entities/Game/game_state_panel.gd" id="1_1f4xe"]
 [ext_resource type="Texture2D" uid="uid://j3x1di1dqj1e" path="res://Original Resources/textures/2x/ShopSignAnimation.png" id="1_se7fj"]
 [ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_nvqqo"]
 [ext_resource type="Texture2D" uid="uid://daxi06v2e7yvi" path="res://Original Resources/textures/2x/chips.png" id="3_nvqqo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q480h"]
+content_margin_left = 16.0
+content_margin_top = 100.0
+content_margin_right = 16.0
 bg_color = Color(0.172549, 0.2, 0.219608, 1)
 border_width_left = 5
 border_width_right = 5
@@ -26,6 +30,21 @@ corner_radius_bottom_left = 10
 atlas = ExtResource("1_se7fj")
 region = Rect2(0, 0, 225, 114)
 
+[sub_resource type="Animation" id="Animation_qn2tb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ShopSign:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 225, 114)]
+}
+
 [sub_resource type="Animation" id="Animation_eyxku"]
 resource_name = "shop_sign_animation"
 length = 0.3
@@ -41,21 +60,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 0, 226, 114), Rect2(226, 0, 226, 114), Rect2(452, 0, 226, 114), Rect2(678, 0, 226, 114)]
-}
-
-[sub_resource type="Animation" id="Animation_qn2tb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ShopSign:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 225, 114)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jykaf"]
@@ -187,49 +191,49 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 137.0
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q480h")
+script = ExtResource("1_1f4xe")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 100
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="ShopSignContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ShopSignContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j37cx")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShopSignContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ShopSignContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ShopSignVboxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShopSignContainer/MarginContainer"]
+[node name="ShopSignVboxContainer" type="VBoxContainer" parent="VBoxContainer/ShopSignContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="ShopSign" type="TextureRect" parent="MarginContainer/VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer"]
+[node name="ShopSign" type="TextureRect" parent="VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer"]
 custom_minimum_size = Vector2(226, 114)
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_schu3")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="ShopSignAnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer/ShopSign"]
+[node name="ShopSignAnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer/ShopSign"]
 root_node = NodePath("../../Label")
 libraries = {
 &"": SubResource("AnimationLibrary_jykaf")
 }
 autoplay = "shop_sign_animation"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ShopSignContainer/MarginContainer/ShopSignVboxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.905882, 0.772549, 0.447059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -238,22 +242,25 @@ theme_override_font_sizes/font_size = 48
 text = "Improve your run!"
 horizontal_alignment = 1
 
-[node name="ScoreContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ScoreContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_schu3")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScoreContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScoreContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScoreContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 24
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
@@ -261,17 +268,19 @@ text = "Round
 score"
 horizontal_alignment = 1
 
-[node name="ChipsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
+[node name="ChipsContainer" type="PanelContainer" parent="VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eyxku")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -280,59 +289,66 @@ texture = SubResource("AtlasTexture_qn2tb")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 48
 text = "0"
 
-[node name="HandCalculationContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HandCalculationContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvqqo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HandCalculationContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="HandContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer"]
+[node name="HandContainer" type="HBoxContainer" parent="VBoxContainer/HandCalculationContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="HandLabel" type="Label" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/HandContainer"]
+[node name="HandLabel" type="Label" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/HandContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 64
 text = "Flush"
 
-[node name="HandLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/HandContainer"]
+[node name="HandLevelLabel" type="Label" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/HandContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
 text = "lvl. 1"
 
-[node name="CalculationContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer"]
+[node name="CalculationContainer" type="HBoxContainer" parent="VBoxContainer/HandCalculationContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="ChipsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
+[node name="ChipsContainer" type="PanelContainer" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qn2tb")
 
-[node name="ChipsLabel" type="Label" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/ChipsContainer"]
+[node name="ChipsLabel" type="Label" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/ChipsContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_nvqqo")
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 64
 text = "63"
 horizontal_alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 6
 
-[node name="XLabel" type="Label" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/MarginContainer"]
+[node name="XLabel" type="Label" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.270588, 0.235294, 1)
@@ -341,43 +357,48 @@ theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 64
 text = "X"
 
-[node name="MultContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
+[node name="MultContainer" type="PanelContainer" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jykaf")
 
-[node name="MultLabel" type="Label" parent="MarginContainer/VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/MultContainer"]
+[node name="MultLabel" type="Label" parent="VBoxContainer/HandCalculationContainer/VBoxContainer/CalculationContainer/MultContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 64
 text = "4"
 
-[node name="BottomContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="BottomContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cwb7s")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="MenusMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer"]
+[node name="MenusMarginContainer" type="MarginContainer" parent="VBoxContainer/BottomContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 
-[node name="MenusVboxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer"]
+[node name="MenusVboxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="RunInfoButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
+[node name="RunInfoButtonPanelContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
 custom_minimum_size = Vector2(120, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h5ywl")
 
-[node name="RunInfoButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer/RunInfoButtonPanelContainer"]
+[node name="RunInfoButton" type="Button" parent="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer/RunInfoButtonPanelContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
@@ -386,15 +407,15 @@ text = "Run
 Info"
 flat = true
 
-[node name="OptionsButtonPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
+[node name="OptionsButtonPanelContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
 custom_minimum_size = Vector2(120, 130)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wdd1k")
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer/OptionsButtonPanelContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer/OptionsButtonPanelContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
@@ -403,36 +424,42 @@ text = "Options
 "
 flat = true
 
-[node name="RunInfoMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer"]
+[node name="RunInfoMarginContainer" type="MarginContainer" parent="VBoxContainer/BottomContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="HandsDiscardContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+[node name="HandsDiscardContainer" type="HBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="HandsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
+[node name="HandsContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o1nsv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="HandsLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
+[node name="HandsLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
 text = "Hands"
 horizontal_alignment = 1
 
-[node name="HandsAmountContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
+[node name="HandsAmountContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6wlyb")
 
-[node name="HandsAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer/HandsAmountContainer"]
+[node name="HandsAmountLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer/HandsAmountContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.564706, 0.94902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -441,26 +468,29 @@ theme_override_font_sizes/font_size = 50
 text = "2"
 horizontal_alignment = 1
 
-[node name="DiscardsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
+[node name="DiscardsContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rt3ls")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="DiscardsLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
+[node name="DiscardsLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
 text = "Discards"
 horizontal_alignment = 1
 
-[node name="DiscardsAmountContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
+[node name="DiscardsAmountContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
 
-[node name="HandsAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer/DiscardsAmountContainer"]
+[node name="HandsAmountLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer/DiscardsAmountContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.270588, 0.235294, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -469,20 +499,23 @@ theme_override_font_sizes/font_size = 50
 text = "1"
 horizontal_alignment = 1
 
-[node name="MoneyContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+[node name="MoneyContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_udngm")
 
-[node name="MoneyAmountContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer"]
+[node name="MoneyAmountContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 
-[node name="DollarSignLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
+[node name="DollarSignLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.866667, 0.678431, 0.247059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -490,7 +523,7 @@ theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 64
 text = "$"
 
-[node name="MoneyAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
+[node name="MoneyAmountLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.866667, 0.678431, 0.247059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -498,33 +531,38 @@ theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 64
 text = "1"
 
-[node name="AnteRoundContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+[node name="AnteRoundContainer" type="HBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="AnteContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
+[node name="AnteContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o1nsv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="AnteLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
+[node name="AnteLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
 text = "Ante"
 horizontal_alignment = 1
 
-[node name="AnteAmountContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
+[node name="AnteAmountContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6wlyb")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 
-[node name="AnteAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+[node name="AnteAmountLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.54902, 0.00392157, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -533,7 +571,7 @@ theme_override_font_sizes/font_size = 50
 text = "1"
 horizontal_alignment = 1
 
-[node name="SeperatorLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+[node name="SeperatorLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -542,7 +580,7 @@ theme_override_font_sizes/font_size = 50
 text = "/"
 horizontal_alignment = 1
 
-[node name="AnteTargetLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+[node name="AnteTargetLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -551,26 +589,29 @@ theme_override_font_sizes/font_size = 50
 text = "8"
 horizontal_alignment = 1
 
-[node name="RoundsContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
+[node name="RoundsContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rt3ls")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="RoundsLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
+[node name="RoundsLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 32
 text = "Rounds"
 horizontal_alignment = 1
 
-[node name="RoundsAmountContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
+[node name="RoundsAmountContainer" type="PanelContainer" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
 
-[node name="RoundsAmountLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer/RoundsAmountContainer"]
+[node name="RoundsAmountLabel" type="Label" parent="VBoxContainer/BottomContainer/HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer/RoundsAmountContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.54902, 0.00392157, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -578,3 +619,5 @@ theme_override_fonts/font = ExtResource("2_nvqqo")
 theme_override_font_sizes/font_size = 50
 text = "1"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/BottomContainer/HBoxContainer/MenusMarginContainer/MenusVboxContainer/OptionsButtonPanelContainer/OptionsButton" to="." method="_on_options_button_pressed"]
