@@ -23,6 +23,7 @@ func _ready() -> void:
 	## Initializes the console adapter.
 	ConsoleAdapter.init()
 	ConsoleAdapter.set_debug_enabled(true)
+	ConsoleAdapter.set_hotkey(KEY_F12)
 
 	## Connects signals for scene loading, main menu closing, and quit requests.
 	Events.load_complete.connect(_on_scene_changed)

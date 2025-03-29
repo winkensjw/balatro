@@ -16,7 +16,6 @@ corner_radius_bottom_left = 10
 
 [node name="ChooseBlindContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(418, 281)
-anchors_preset = -1
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y7r76")

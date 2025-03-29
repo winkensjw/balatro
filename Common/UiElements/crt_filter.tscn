@@ -16,7 +16,7 @@ shader_parameter/brightness_boost = 1.0
 bg_color = Color(1, 1, 1, 0)
 
 [node name="CrtFilter" type="CanvasLayer"]
-layer = 127
+layer = 126
 
 [node name="Panel" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_h2yge")
