@@ -85,7 +85,7 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xx22u"]
 atlas = ExtResource("3_o1s7b")
-region = Rect2(175, 0, 57, 57)
+region = Rect2(2, 2, 54, 54)
 
 [node name="CurrentBlindContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(418, 281)
@@ -100,7 +100,8 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_krp2r")
 
-[node name="Label" type="Label" parent="VBoxContainer/LabelContainer"]
+[node name="BlindLabel" type="Label" parent="VBoxContainer/LabelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_11fj4")
 theme_override_font_sizes/font_size = 50
@@ -116,6 +117,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="BlindTextureRect" type="TextureRect" parent="VBoxContainer/BlindInfoContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 texture = SubResource("AtlasTexture_5mt04")
@@ -157,7 +159,8 @@ texture = SubResource("AtlasTexture_xx22u")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/BlindInfoContainer/HBoxContainer/InnerBlindInfoContainer/VBoxContainer/RequiredChipsContainer"]
+[node name="RequiredChipsLabel" type="Label" parent="VBoxContainer/BlindInfoContainer/HBoxContainer/InnerBlindInfoContainer/VBoxContainer/RequiredChipsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.270588, 0.235294, 1)
 theme_override_fonts/font = ExtResource("1_11fj4")
@@ -175,6 +178,7 @@ theme_override_font_sizes/font_size = 24
 text = "Reward:"
 
 [node name="RewardAmountLabel" type="Label" parent="VBoxContainer/BlindInfoContainer/HBoxContainer/InnerBlindInfoContainer/VBoxContainer/RewardContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.866667, 0.678431, 0.247059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

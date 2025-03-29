@@ -11,10 +11,12 @@
 class_name GameStatePanel
 extends Control
 
+#FIXME move this to game state controller
 enum Phase { CHOOSE_BLIND, SHOP, PLAY_ROUND }
 
 var _log: Log = Log.new("GameStatePanel")
 var _current_container: Control
+var _offscreen_position: Vector2
 
 @onready var _choose_blind_container_scene: PackedScene = preload(Constants.CHOOSE_BLIND_CONTAINER_SCENE_PATH)
 @onready var _current_blind_container_scene: PackedScene = preload(Constants.CURRENT_BLIND_CONTAINER_SCENE_PATH)
@@ -25,38 +27,42 @@ var _current_container: Control
 
 func _ready() -> void:
 	Events.phase_changed.connect(_on_phase_changed)
-	Console.add_command("change_phase", _change_to_shop)
+	_offscreen_position = Vector2(_box_anchor.global_position.x, -_box_anchor.size.y - 10)
+	_compute_offscreen_position.call_deferred()
 	_add_initial_panel.call_deferred()
 
 
+func _compute_offscreen_position() -> void:
+	_offscreen_position = Vector2(_box_anchor.global_position.x, -_box_anchor.size.y - 10)
+
+
 func _add_initial_panel() -> void:
-	var choose_blind_container: Control = _add_panel(_choose_blind_container_scene)
-	choose_blind_container.global_position.x = _box_anchor.global_position.x
-	choose_blind_container.global_position.y = _box_anchor.global_position.y
+	_add_panel(_choose_blind_container_scene, _box_anchor.global_position)
 
 
-func _add_panel(panel_scene: PackedScene) -> Control:
-	var panel: Control = panel_scene.instantiate()
-	_current_container = panel
-	add_child(panel)
-	return panel
-
-
-func _change_to_shop() -> void:
-	_on_phase_changed(Phase.SHOP)
+func _add_panel(container_scene: PackedScene, initial_position: Vector2 = _offscreen_position) -> Control:
+	var container: Control = container_scene.instantiate()
+	_current_container = container
+	add_child(container)
+	container.global_position = initial_position
+	return container
 
 
 func _on_phase_changed(new_phase: Phase) -> void:
+	var old_container: Control = _current_container
 	match new_phase:
 		Phase.CHOOSE_BLIND:
 			_log.debug("Phase changed to ChooseBlind")
-			switch_panel(_current_container, _choose_blind_container_scene)
+			var new_container: Control = _add_panel(_choose_blind_container_scene)
+			switch_panel(old_container, new_container)
 		Phase.SHOP:
 			_log.debug("Phase changed to Shop")
-			switch_panel(_current_container, _shop_sign_container_scene)
+			var new_container: Control = _add_panel(_shop_sign_container_scene)
+			switch_panel(old_container, new_container)
 		Phase.PLAY_ROUND:
 			_log.debug("Phase changed to PlayRound")
-			switch_panel(_current_container, _current_blind_container_scene)
+			var new_container: Control = _add_panel(_current_blind_container_scene)
+			switch_panel(old_container, new_container)
 		_:
 			_log.warn("Unknown phase: %s" % new_phase)
 
@@ -64,15 +70,15 @@ func _on_phase_changed(new_phase: Phase) -> void:
 ## Switches one panel out for the next panel
 ## @param old_panel: Control The control that will dissapear
 ## @param new_panel: Control The control that will be displayed
-func switch_panel(old_panel: Control, new_panel_scene: PackedScene) -> void:
+func switch_panel(old_panel: Control, new_panel: Control) -> void:
+	# off screen position for the old panel
 	var move_distance_up: float = -old_panel.size.y - 10
 
-	var new_panel: Control = _add_panel(new_panel_scene)
-	new_panel.global_position.x = _box_anchor.global_position.x
-	new_panel.global_position.y = move_distance_up
-
 	var tween: Tween = create_tween()
+	# move old panel off screen
 	tween.tween_property(old_panel, "global_position:y", move_distance_up, 0.3).set_ease(Tween.EASE_OUT)
 	tween.tween_interval(0.1)
+	# move new panel into view
 	tween.tween_property(new_panel, "global_position:y", _box_anchor.global_position.y, 0.3).set_ease(Tween.EASE_OUT)
+	# remove old panel
 	tween.tween_callback(func() -> void: old_panel.queue_free())
