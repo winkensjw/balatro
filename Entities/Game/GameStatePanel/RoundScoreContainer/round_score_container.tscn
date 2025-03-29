@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1n4iu8bq5ju1"]
+
+[ext_resource type="Script" uid="uid://kdj3rjip2kqi" path="res://Entities/Game/GameStatePanel/RoundScoreContainer/round_score_container.gd" id="1_8f484"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_gxts4"]
+[ext_resource type="Texture2D" uid="uid://daxi06v2e7yvi" path="res://Original Resources/textures/2x/chips.png" id="2_8f484"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_schu3"]
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyxku"]
+bg_color = Color(0.172549, 0.2, 0.219608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn2tb"]
+atlas = ExtResource("2_8f484")
+region = Rect2(0, 0, 57, 57)
+
+[node name="RoundScoreContainer" type="PanelContainer"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_schu3")
+script = ExtResource("1_8f484")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gxts4")
+theme_override_font_sizes/font_size = 32
+text = "Round
+score"
+horizontal_alignment = 1
+
+[node name="ChipsContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eyxku")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ChipsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qn2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RoundScoreLabel" type="Label" parent="MarginContainer/HBoxContainer/ChipsContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_gxts4")
+theme_override_font_sizes/font_size = 48
+text = "0"

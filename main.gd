@@ -12,7 +12,7 @@ extends Node
 
 ## The log object used throughout the game for logging messages.
 ## It is initialized with the name of this script's class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("Main")
 
 ## The current scene being displayed in the game.
 var _current_scene: Node
@@ -22,12 +22,13 @@ var _current_scene: Node
 func _ready() -> void:
 	## Initializes the console adapter.
 	ConsoleAdapter.init()
+	ConsoleAdapter.set_debug_enabled(true)
 
 	## Connects signals for scene loading, main menu closing, and quit requests.
 	Events.load_complete.connect(_on_scene_changed)
 	Events.quit_game_requested.connect(_on_quit_game_requested)
 
-	Events.change_current_scene.connect(_on_scene_change_requested)
+	Events.scene_change_requested.connect(_on_scene_change_requested)
 
 	_add_audio()
 	_add_crt()

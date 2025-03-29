@@ -6,7 +6,7 @@
 shader = ExtResource("1_odbc8")
 shader_parameter/resolution = Vector2(320, 180)
 shader_parameter/scan_line_amount = 0.05
-shader_parameter/warp_amount = 0.0
+shader_parameter/warp_amount = 0.05
 shader_parameter/vignette_amount = 0.0
 shader_parameter/vignette_intensity = 0.0
 shader_parameter/grille_amount = 0.05
@@ -16,7 +16,7 @@ shader_parameter/brightness_boost = 1.0
 bg_color = Color(1, 1, 1, 0)
 
 [node name="CrtFilter" type="CanvasLayer"]
-layer = 128
+layer = 127
 
 [node name="Panel" type="Panel" parent="."]
 material = SubResource("ShaderMaterial_h2yge")

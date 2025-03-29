@@ -20,3 +20,8 @@ const MAIN_MENU_SCENE_PATH: String = "res://Entities/MainMenu/main_menu.tscn"
 const OPTIONS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/options_dialog.tscn"
 const SETTINGS_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/settings_dialog.tscn"
 const GAME_SETUP_DIALOG_SCENE_PATH: String = "res://Entities/MainMenu/Dialogs/game_setup_dialog.tscn"
+
+# Game State Panel
+const CHOOSE_BLIND_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStatePanel/ChooseBlindContainer/choose_blind_container.tscn"
+const CURRENT_BLIND_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStatePanel/CurrentBlindContainer/current_blind_container.tscn"
+const SHOP_SIGN_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStatePanel/ShopSignContainer/shop_sign_container.tscn"

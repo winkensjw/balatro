@@ -20,15 +20,24 @@ signal transition_in_complete
 signal scene_finished_loading(scene: Node)
 signal scene_invalid(scene_path: String)
 signal scene_failed_to_load(scene_path: String)
-signal change_current_scene(scene_path: String)
+signal scene_change_requested(scene_path: String)
 
 # Modal Manager
 signal show_dialog(dialog: PackedScene, animate: bool)
 signal close_dialog(dialog: Control, animate: bool)
 
 # Main Menu
-signal main_menu_closed
 signal quit_game_requested
 signal settings_changed
 
-# Add events here
+# Game state
+signal hands_changed(new_amount: int)
+signal discards_changed(new_amount: int)
+signal money_changed(new_amount: int)
+signal ante_changed(new_ante_amount: int, new_target_amount: int)
+signal round_changed(new_round: int)
+signal scored_hand_changed(scored_hand: String, score_hand_level: String)
+signal chips_changed(new_amount: int)
+signal mult_changed(new_amout: int)
+signal phase_changed(new_phase: GameStatePanel.Phase)
+signal round_score_changed(new_amount: int)

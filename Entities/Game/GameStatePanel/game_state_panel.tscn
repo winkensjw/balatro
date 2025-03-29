@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7cdo73n4urua"]
+
+[ext_resource type="Script" uid="uid://bhmjmqlt8kke3" path="res://Entities/Game/GameStatePanel/game_state_panel.gd" id="1_1f4xe"]
+[ext_resource type="PackedScene" uid="uid://c7mqnr8n4oxey" path="res://Entities/Game/GameStatePanel/HandCalculationContainer/hand_calculation_container.tscn" id="6_mi45l"]
+[ext_resource type="PackedScene" uid="uid://kvidf62u51s4" path="res://Entities/Game/GameStatePanel/RoundInfoContainer/round_info_container.tscn" id="7_kx7gt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q480h"]
+content_margin_left = 16.0
+content_margin_top = 100.0
+content_margin_right = 16.0
+bg_color = Color(0.172549, 0.2, 0.219608, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(1, 0.270588, 0.235294, 1)
+
+[node name="GameStatePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 100.0
+offset_right = 434.0
+offset_bottom = 1080.0
+script = ExtResource("1_1f4xe")
+
+[node name="GameStatePanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 137.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q480h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameStatePanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="BoxPlaceholder" type="Control" parent="GameStatePanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(418, 281)
+layout_mode = 2
+
+[node name="BoxAnchor" type="Control" parent="GameStatePanelContainer/VBoxContainer/BoxPlaceholder"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HandCalculationContainer" parent="GameStatePanelContainer/VBoxContainer" instance=ExtResource("6_mi45l")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RoundInfoContainer" parent="GameStatePanelContainer/VBoxContainer" instance=ExtResource("7_kx7gt")]
+unique_name_in_owner = true
+layout_mode = 2

@@ -21,7 +21,7 @@ const SAVE_ID: String = "f8a7b6c5-d4e3-2f1g-h0i9-j8k7l6m5n4o3"
 const VERSION_ID: String = "1"
 
 ## Logger instance for this class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("Globals")
 
 ## Audio volume setting for the master bus.
 var _master_volume_db: float = 0.0

@@ -12,7 +12,7 @@
 extends Node
 
 ## Logger instance for this class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("SceneManager")
 
 ## The loading screen instance.
 var _loading_screen: LoadingScreen

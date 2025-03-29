@@ -18,7 +18,7 @@ var _starting_animation_name: String
 
 ## Logger instance for this class.
 ## Used to output debug messages.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("LoadingScreen")
 
 ## A reference to the ProgressBar node.
 @onready var _progress_bar: ProgressBar = %ProgressBar

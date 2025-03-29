@@ -22,7 +22,7 @@ var _data: Dictionary = {}
 
 ## Logger instance for this class.
 ## Used to output debug messages.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("SaveManager")
 
 
 ## Called when the node enters the scene tree for the first time.

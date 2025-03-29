@@ -8,4 +8,4 @@ func _on_back_button_pressed() -> void:
 
 func _on_play_button_pressed() -> void:
 	close(true)
-	Events.change_current_scene.emit(Constants.GAME_SCENE_PATH)
+	Events.scene_change_requested.emit(Constants.GAME_SCENE_PATH)

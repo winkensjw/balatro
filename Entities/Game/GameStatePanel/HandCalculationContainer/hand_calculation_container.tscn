@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7mqnr8n4oxey"]
+
+[ext_resource type="Script" uid="uid://bgfv8r8m4nrny" path="res://Entities/Game/GameStatePanel/HandCalculationContainer/hand_calculation_container.gd" id="1_jev2i"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_pfts8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvqqo"]
+content_margin_left = 8.0
+content_margin_top = 16.0
+content_margin_right = 8.0
+content_margin_bottom = 16.0
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn2tb"]
+content_margin_right = 8.0
+bg_color = Color(0, 0.564706, 0.94902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jykaf"]
+content_margin_left = 8.0
+bg_color = Color(1, 0.270588, 0.235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HandCalculationContainer" type="PanelContainer"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvqqo")
+script = ExtResource("1_jev2i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="HandContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="HandLabel" type="Label" parent="VBoxContainer/HandContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 64
+text = "Flush"
+
+[node name="HandLevelLabel" type="Label" parent="VBoxContainer/HandContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 32
+text = "lvl."
+
+[node name="HandLevelAmountLabel" type="Label" parent="VBoxContainer/HandContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 32
+text = "1"
+
+[node name="CalculationContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ChipsContainer" type="PanelContainer" parent="VBoxContainer/CalculationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qn2tb")
+
+[node name="ChipsLabel" type="Label" parent="VBoxContainer/CalculationContainer/ChipsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 64
+text = "63"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CalculationContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 6
+
+[node name="XLabel" type="Label" parent="VBoxContainer/CalculationContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.270588, 0.235294, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 64
+text = "X"
+
+[node name="MultContainer" type="PanelContainer" parent="VBoxContainer/CalculationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jykaf")
+
+[node name="MultLabel" type="Label" parent="VBoxContainer/CalculationContainer/MultContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_pfts8")
+theme_override_font_sizes/font_size = 64
+text = "4"

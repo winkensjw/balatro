@@ -11,7 +11,7 @@ class_name OptionsDialog
 extends ModalDialog
 
 ## Logger instance for this class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("OptionsDialog")
 
 ## PackedScene for the Settings Dialog.
 @onready var _settings_dialog_scene: PackedScene = preload(Constants.SETTINGS_DIALOG_SCENE_PATH)

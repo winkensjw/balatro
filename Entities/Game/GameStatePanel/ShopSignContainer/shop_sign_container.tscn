@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnmel2a4kgf7v"]
+
+[ext_resource type="Texture2D" uid="uid://j3x1di1dqj1e" path="res://Original Resources/textures/2x/ShopSignAnimation.png" id="1_4ltf3"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_xp08e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j37cx"]
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 0.270588, 0.235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_schu3"]
+atlas = ExtResource("1_4ltf3")
+region = Rect2(0, 0, 225, 114)
+
+[sub_resource type="Animation" id="Animation_qn2tb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ShopSign:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 225, 114)]
+}
+
+[sub_resource type="Animation" id="Animation_eyxku"]
+resource_name = "shop_sign_animation"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ShopSign:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10048, 0.196527, 0.298484),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 226, 114), Rect2(226, 0, 226, 114), Rect2(452, 0, 226, 114), Rect2(678, 0, 226, 114)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jykaf"]
+_data = {
+&"RESET": SubResource("Animation_qn2tb"),
+&"shop_sign_animation": SubResource("Animation_eyxku")
+}
+
+[node name="ShopSignContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(418, 281)
+offset_right = 418.0
+offset_bottom = 281.0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j37cx")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ShopSignVboxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShopSign" type="TextureRect" parent="MarginContainer/ShopSignVboxContainer"]
+custom_minimum_size = Vector2(226, 114)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_schu3")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ShopSignAnimationPlayer" type="AnimationPlayer" parent="MarginContainer/ShopSignVboxContainer/ShopSign"]
+root_node = NodePath("../../Label")
+libraries = {
+&"": SubResource("AnimationLibrary_jykaf")
+}
+autoplay = "shop_sign_animation"
+
+[node name="Label" type="Label" parent="MarginContainer/ShopSignVboxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.905882, 0.772549, 0.447059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_xp08e")
+theme_override_font_sizes/font_size = 48
+text = "Improve your run!"
+horizontal_alignment = 1

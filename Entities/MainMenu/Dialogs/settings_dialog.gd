@@ -13,7 +13,7 @@ class_name SettingsDialog
 extends ModalDialog
 
 ## Logger instance for this class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("SettingsDialog")
 
 @onready var _game_container: MarginContainer = %GameContainer
 @onready var _video_container: MarginContainer = %VideoContainer

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cds83vxnhivn6"]
+
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_1xn6l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7r76"]
+content_margin_left = 5.0
+content_margin_top = 87.0
+content_margin_right = 5.0
+content_margin_bottom = 88.0
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+draw_center = false
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ChooseBlindContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(418, 281)
+anchors_preset = -1
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y7r76")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ChooseYourLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1xn6l")
+theme_override_font_sizes/font_size = 50
+text = "Choose your"
+horizontal_alignment = 1
+
+[node name="NextBlindLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1xn6l")
+theme_override_font_sizes/font_size = 50
+text = "next Blind"
+horizontal_alignment = 1

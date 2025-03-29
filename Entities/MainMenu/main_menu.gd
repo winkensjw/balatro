@@ -13,7 +13,7 @@ class_name MainMenu
 extends CanvasLayer
 
 ## Logger instance for this class.
-var _log: Log = Log.new(self.name)
+var _log: Log = Log.new("MainMenu")
 
 ## PackedScene for the Options Dialog.
 @onready var _options_dialog_scene: PackedScene = preload(Constants.OPTIONS_DIALOG_SCENE_PATH)

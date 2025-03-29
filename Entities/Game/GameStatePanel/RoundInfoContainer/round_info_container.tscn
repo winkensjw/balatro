@@ -1,0 +1,335 @@
+[gd_scene load_steps=13 format=3 uid="uid://kvidf62u51s4"]
+
+[ext_resource type="Script" uid="uid://cvdl51qakcq0i" path="res://Entities/Game/GameStatePanel/RoundInfoContainer/round_info_container.gd" id="1_e4ay6"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="1_y1u7k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwb7s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5ywl"]
+bg_color = Color(1, 0.270588, 0.235294, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(3, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1nsv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdd1k"]
+bg_color = Color(0.921569, 0.568627, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(3, 5)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wlyb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1nsv"]
+content_margin_left = 5.0
+content_margin_top = 8.0
+content_margin_right = 5.0
+content_margin_bottom = 8.0
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wlyb"]
+bg_color = Color(0.172549, 0.2, 0.219608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rt3ls"]
+content_margin_left = 5.0
+content_margin_top = 8.0
+content_margin_right = 5.0
+content_margin_bottom = 8.0
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5l0v"]
+bg_color = Color(0.172549, 0.2, 0.219608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udngm"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(0.109804, 0.141176, 0.152941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="RoundInfoContainer" type="PanelContainer"]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cwb7s")
+script = ExtResource("1_e4ay6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="MenusMarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+
+[node name="MenusVboxContainer" type="VBoxContainer" parent="HBoxContainer/MenusMarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="RunInfoButtonPanelContainer" type="PanelContainer" parent="HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
+custom_minimum_size = Vector2(120, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h5ywl")
+
+[node name="RunInfoButton" type="Button" parent="HBoxContainer/MenusMarginContainer/MenusVboxContainer/RunInfoButtonPanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o1nsv")
+text = "Run
+Info"
+flat = true
+
+[node name="OptionsButtonPanelContainer" type="PanelContainer" parent="HBoxContainer/MenusMarginContainer/MenusVboxContainer"]
+custom_minimum_size = Vector2(120, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wdd1k")
+
+[node name="OptionsButton" type="Button" parent="HBoxContainer/MenusMarginContainer/MenusVboxContainer/OptionsButtonPanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6wlyb")
+text = "Options
+"
+flat = true
+
+[node name="RunInfoMarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RunInfoMarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HandsDiscardContainer" type="HBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HandsContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o1nsv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HandsLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+text = "Hands"
+horizontal_alignment = 1
+
+[node name="HandsAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6wlyb")
+
+[node name="HandsAmountLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/HandsContainer/VBoxContainer/HandsAmountContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.564706, 0.94902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "2"
+horizontal_alignment = 1
+
+[node name="DiscardsContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rt3ls")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DiscardsLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+text = "Discards"
+horizontal_alignment = 1
+
+[node name="DiscardsAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
+
+[node name="DiscardsAmountLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/HandsDiscardContainer/DiscardsContainer/VBoxContainer/DiscardsAmountContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.270588, 0.235294, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+
+[node name="MoneyContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_udngm")
+
+[node name="MoneyAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="DollarSignLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.866667, 0.678431, 0.247059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 64
+text = "$"
+
+[node name="MoneyAmountLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/MoneyContainer/MoneyAmountContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.866667, 0.678431, 0.247059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 64
+text = "1"
+
+[node name="AnteRoundContainer" type="HBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AnteContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o1nsv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AnteLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+text = "Ante"
+horizontal_alignment = 1
+
+[node name="AnteAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6wlyb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="AnteAmountLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.54902, 0.00392157, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+
+[node name="SeperatorLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "/"
+horizontal_alignment = 1
+
+[node name="AnteTargetLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/AnteContainer/VBoxContainer/AnteAmountContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "8"
+horizontal_alignment = 1
+
+[node name="RoundsContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rt3ls")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RoundsLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 32
+text = "Rounds"
+horizontal_alignment = 1
+
+[node name="RoundsAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y5l0v")
+
+[node name="RoundsAmountLabel" type="Label" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer/RoundsAmountContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.54902, 0.00392157, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_y1u7k")
+theme_override_font_sizes/font_size = 50
+text = "1"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/MenusMarginContainer/MenusVboxContainer/RunInfoButtonPanelContainer/RunInfoButton" to="." method="_on_run_info_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MenusMarginContainer/MenusVboxContainer/OptionsButtonPanelContainer/OptionsButton" to="." method="_on_options_button_pressed"]
