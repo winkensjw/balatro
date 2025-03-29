@@ -313,7 +313,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_y1u7k")
 theme_override_font_sizes/font_size = 32
-text = "Rounds"
+text = "Round"
 horizontal_alignment = 1
 
 [node name="RoundsAmountContainer" type="PanelContainer" parent="HBoxContainer/RunInfoMarginContainer/VBoxContainer/AnteRoundContainer/RoundsContainer/VBoxContainer"]

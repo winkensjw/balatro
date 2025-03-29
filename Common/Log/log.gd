@@ -36,7 +36,7 @@ func info(text: Variant) -> void:
 
 ## Logs a warning message with the given text.
 ## @param text The text to log as a warning.
-func warning(text: Variant) -> void:
+func warn(text: Variant) -> void:
 	ConsoleAdapter.warning("[" + get_class_name() + "] " + str(text))
 
 

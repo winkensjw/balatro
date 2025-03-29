@@ -11,9 +11,6 @@
 class_name GameStatePanel
 extends Control
 
-#FIXME move this to game state controller
-enum Phase { CHOOSE_BLIND, SHOP, PLAY_ROUND }
-
 var _log: Log = Log.new("GameStatePanel")
 var _current_container: Control
 var _offscreen_position: Vector2
@@ -48,21 +45,24 @@ func _add_panel(container_scene: PackedScene, initial_position: Vector2 = _offsc
 	return container
 
 
-func _on_phase_changed(new_phase: Phase) -> void:
+func _on_phase_changed(new_phase: GameController.Phase) -> void:
 	var old_container: Control = _current_container
 	match new_phase:
-		Phase.CHOOSE_BLIND:
+		GameController.Phase.CHOOSE_BLIND:
 			_log.debug("Phase changed to ChooseBlind")
 			var new_container: Control = _add_panel(_choose_blind_container_scene)
 			switch_panel(old_container, new_container)
-		Phase.SHOP:
-			_log.debug("Phase changed to Shop")
-			var new_container: Control = _add_panel(_shop_sign_container_scene)
-			switch_panel(old_container, new_container)
-		Phase.PLAY_ROUND:
+		GameController.Phase.PLAY_ROUND:
 			_log.debug("Phase changed to PlayRound")
 			var new_container: Control = _add_panel(_current_blind_container_scene)
 			switch_panel(old_container, new_container)
+		GameController.Phase.SHOP:
+			_log.debug("Phase changed to Shop")
+			var new_container: Control = _add_panel(_shop_sign_container_scene)
+			switch_panel(old_container, new_container)
+		GameController.Phase.CALC_RESULTS:
+			_log.debug("Phase changed to CalcResults")
+			_log.warn("Phase not supported yet.")
 		_:
 			_log.warn("Unknown phase: %s" % new_phase)
 
