@@ -1,5 +1,5 @@
 ## ============================================================================
-## Card.gd
+## CardUi.gd
 ## ============================================================================
 ## Represents a card in the game, allowing it to be dragged by the player.
 ## This class manages the visual appearance of the card (position, rotation,
@@ -8,7 +8,7 @@
 ## @author winkensjw
 ## @version 1.0
 ## ============================================================================
-class_name Card
+class_name CardUi
 extends Button
 
 ## The Marker2D that represents the card's resting position.
@@ -25,16 +25,14 @@ var _oldpos: Vector2 = Vector2(0, 0)
 var _veldir2: Vector2 = Vector2(0, 0)
 var _oldpos2: Vector2 = Vector2(0, 0)
 
+##Reference to the sprite
+@onready var _sprite: Sprite2D = $Sprite
 
-## Handles input events, such as mouse motion and mouse button presses.
-## @param event: InputEvent The input event that occurred.
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and enabled:
-		_mousepos = event.position + _get_card_offset()
-		_veldir = clamp(event.velocity / 4000, Vector2(-0.3, -0.3), Vector2(0.3, 0.3))
-	if event is InputEventMouseButton and enabled:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
-			_is_dragging_card = false
+
+## Initializes the card with a given texture.
+## @param texture: Texture2D The texture to set on the card's sprite.
+func initialize(texture: Texture2D) -> void:
+	_sprite.texture = texture
 
 
 ## Called every frame.  Updates the card's appearance and behavior.
@@ -54,6 +52,17 @@ func _process(delta: float) -> void:
 ## Called when the card is pressed.  Sets the card to be dragged.
 func _on_button_down() -> void:
 	_is_dragging_card = true
+
+
+## Handles input events, such as mouse motion and mouse button presses.
+## @param event: InputEvent The input event that occurred.
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and enabled:
+		_mousepos = event.position + _get_card_offset()
+		_veldir = clamp(event.velocity / 4000, Vector2(-0.3, -0.3), Vector2(0.3, 0.3))
+	if event is InputEventMouseButton and enabled:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
+			_is_dragging_card = false
 
 
 ## Returns the position the card should snap back to when released.

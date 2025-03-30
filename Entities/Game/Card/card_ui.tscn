@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctqi7xwdjfn2y"]
 
-[ext_resource type="Script" uid="uid://bvr7xwwvt0cph" path="res://Entities/Game/Card/card.gd" id="1_atcmr"]
-[ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="3_cguh5"]
+[ext_resource type="Script" uid="uid://bvr7xwwvt0cph" path="res://Entities/Game/Card/card_ui.gd" id="1_xxvj2"]
+[ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="2_i5hx6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cguh5"]
 
@@ -15,10 +15,10 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sg4qm"]
-atlas = ExtResource("3_cguh5")
+atlas = ExtResource("2_i5hx6")
 region = Rect2(0, 0, 142, 190)
 
-[node name="Card" type="Button"]
+[node name="CardUi" type="Button"]
 material = SubResource("ShaderMaterial_cguh5")
 offset_left = -72.0
 offset_top = -96.0
@@ -28,7 +28,7 @@ pivot_offset = Vector2(71, 95)
 size_flags_horizontal = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cguh5")
 flat = true
-script = ExtResource("1_atcmr")
+script = ExtResource("1_xxvj2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -38,7 +38,7 @@ pivot_offset = Vector2(71, 95)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_cguh5")
 
-[node name="Suit" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_sg4qm")
 offset = Vector2(71, 95)
 
