@@ -37,7 +37,7 @@ var _current_round: int = 0
 
 var _deck: Deck
 var _hand: Array[Card]
-var _max_hand_size: int = 7  #XXX
+var _max_hand_size: int = 0
 
 
 static func suit_to_string(suit: GameController.Suit) -> String:

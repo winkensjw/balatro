@@ -40,7 +40,8 @@ func draw_card() -> Card:
 		return card
 
 	_log.warn("Deck is empty, cannot draw card.")
-	return null  # FIXME end game here
+	Events.game_lost.emit()
+	return null
 
 
 ## Returns the number of cards remaining in the deck.

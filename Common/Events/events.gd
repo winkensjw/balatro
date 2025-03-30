@@ -41,3 +41,4 @@ signal chips_changed(new_amount: int)
 signal mult_changed(new_amout: int)
 signal phase_changed(new_phase: Phase)
 signal round_score_changed(new_amount: int)
+signal game_lost
