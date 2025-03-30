@@ -12,14 +12,12 @@
 class_name GameController
 extends Node
 
-## Enum representing the different phases of the game.
-enum Phase { CHOOSE_BLIND, PLAY_ROUND, CALC_RESULTS, SHOP }
 enum Suit { SPADES, HEARTS, CLUBS, DIAMONDS }
 enum Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, J, Q, K, A }
 
 var _log: Log = Log.new("GameController")
 
-var _current_phase: Phase = Phase.CHOOSE_BLIND
+var _current_phase: Phase
 
 var _current_score: int = 0
 
@@ -39,6 +37,7 @@ var _current_round: int = 0
 
 var _deck: Deck
 var _hand: Array[Card]
+var _max_hand_size: int = 7  #XXX
 
 
 static func suit_to_string(suit: GameController.Suit) -> String:
@@ -92,7 +91,7 @@ static func rank_to_string(rank: GameController.Rank) -> String:
 func _init() -> void:
 	_log.debug("GameController is initializing.")
 	ConsoleAdapter.add_command("advance_phase", _advance_phase)
-	ConsoleAdapter.add_command("draw_hand", _draw_hand)
+	ConsoleAdapter.add_command("draw_hand", draw_hand)
 	ConsoleAdapter.add_command("set_current_score", set_current_score, ["score"], 1, "Sets the current score.")
 	ConsoleAdapter.add_command("set_current_hands", set_current_hands_amount, ["hands"], 1, "Sets the current hands amount.")
 	ConsoleAdapter.add_command("set_max_hands", set_max_hands_amount, ["max_hands"], 1, "Sets the maximum hands amount.")
@@ -268,9 +267,42 @@ func set_current_round(new_round: int) -> void:
 	Events.round_changed.emit(_current_round)
 
 
+## Returns the deck.
+func get_deck() -> Deck:
+	return _deck
+
+
+## Sets the deck.
+## @param value: Deck The new deck value.
+func set_deck(value: Deck) -> void:
+	_deck = value
+
+
+## Returns the hand.
+func get_hand() -> Array[Card]:
+	return _hand
+
+
+## Sets the hand.
+## @param value: Array[Card] The new hand value.
+func set_hand(value: Array[Card]) -> void:
+	_hand = value
+
+
+## Returns the max hand size.
+func get_max_hand_size() -> int:
+	return _max_hand_size
+
+
+## Sets the max hand size.
+## @param value: int The new max hand size value.
+func set_max_hand_size(value: int) -> void:
+	_max_hand_size = value
+
+
 ## Starts the game by setting the initial phase.
 func start_game() -> void:
-	_set_phase(Phase.CHOOSE_BLIND)
+	_set_phase(ChooseBlindPhase.new(self))
 
 
 ## Sets the current game phase and emits the phase_changed signal.
@@ -281,41 +313,28 @@ func _set_phase(new_phase: Phase) -> void:
 		return
 
 	_log.debug("Changing phase from %s to %s" % [_current_phase, new_phase])
+	if _current_phase != null:
+		_current_phase.exit()
 	_current_phase = new_phase
+	_current_phase.enter()
 	Events.phase_changed.emit(_current_phase)
 
 
 ## Advances the game to the next phase based on the current phase.
 func _advance_phase() -> void:
-	match _current_phase:
-		Phase.CHOOSE_BLIND:
-			_enter_play_round()
-		Phase.PLAY_ROUND:
-			_enter_calc_results()
-		Phase.CALC_RESULTS:
-			_enter_shop()
-		Phase.SHOP:
-			_enter_choose_blind()
+	match _current_phase._phase:
+		Phase.PhaseType.CHOOSE_BLIND:
+			_set_phase(PlayRoundPhase.new(self))
+		Phase.PhaseType.PLAY_ROUND:
+			_set_phase(CalcResultPhase.new(self))
+		Phase.PhaseType.CALC_RESULTS:
+			_set_phase(ShopPhase.new(self))
+		Phase.PhaseType.SHOP:
+			_set_phase(ChooseBlindPhase.new(self))
 		_:
 			_log.warn("Unknown phase: %s" % _current_phase)
 
 
-func _enter_choose_blind() -> void:
-	_set_phase(Phase.CHOOSE_BLIND)
-
-
-func _enter_play_round() -> void:
-	_set_phase(Phase.PLAY_ROUND)
-
-
-func _enter_calc_results() -> void:
-	_set_phase(Phase.CALC_RESULTS)
-
-
-func _enter_shop() -> void:
-	_set_phase(Phase.SHOP)
-
-
-func _draw_hand() -> void:
-	while _hand.size() < _max_hands_amount:
+func draw_hand() -> void:
+	while _hand.size() < _max_hand_size:
 		_hand.append(_deck.draw_card())
