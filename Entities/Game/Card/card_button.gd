@@ -6,8 +6,7 @@ extends Button
 var _time: float = 0.0
 var _value: float = 2000
 var _mousepos: Vector2 = Vector2(0, 0)
-var _bla: int = 0
-var _blaa: int = 0
+var _is_dragging_card: bool = false
 var _veldir: Vector2 = Vector2(0, 0)
 var _oldpos: Vector2 = Vector2(0, 0)
 var _veldir2: Vector2 = Vector2(0, 0)
@@ -20,14 +19,14 @@ func _input(event: InputEvent) -> void:
 		_veldir = clamp(event.velocity / 4000, Vector2(-0.3, -0.3), Vector2(0.3, 0.3))
 	if event is InputEventMouseButton and enabled:
 		if event.button_index == 1 and event.pressed == false:
-			_bla = 0
+			_is_dragging_card = 0
 
 
 func _process(delta: float) -> void:
 	if enabled:
 		self.visible = true
 		_time += 1 * delta
-		if _bla == 1:
+		if _is_dragging_card:
 			self.position = lerp(self.position, _mousepos, 0.25)
 			self.rotation += clamp(_veldir.x, -0.3, 0.3)
 			self.rotation *= 0.8
@@ -47,7 +46,6 @@ func _process(delta: float) -> void:
 			var card_material: Material = material
 			if is_cursor_touching() and enabled:
 				if card_material:
-					_blaa = 1
 					self.scale = lerp(self.scale, Vector2(1.05, 1.05), 0.25)
 					card_material.set_shader_parameter("hovering", 1)
 					card_material.set_shader_parameter(
@@ -57,7 +55,6 @@ func _process(delta: float) -> void:
 				if card_material:
 					self.scale = lerp(self.scale, Vector2(1, 1), 0.25)
 					card_material.set_shader_parameter("hovering", 0)
-					_blaa = 0
 	else:
 		self.position = normal.position
 		self.rotation = 0
@@ -65,7 +62,8 @@ func _process(delta: float) -> void:
 
 
 func _on_button_down() -> void:
-	_bla = 1
+	print("Button down")
+	_is_dragging_card = true
 
 
 # Returns true if the cursor is touching the sprite.
