@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bu5c1p2u73i57"]
+
+[ext_resource type="Script" uid="uid://ctvipljjnhsk" path="res://Entities/Game/Card/Resources/card_resource.gd" id="1_220x5"]
+[ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="2_0rubq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv70f"]
+atlas = ExtResource("2_0rubq")
+region = Rect2(852, 380, 142, 190)
+
+[resource]
+script = ExtResource("1_220x5")
+score = 8
+suit = 3
+rank = 0
+texture = SubResource("AtlasTexture_uv70f")

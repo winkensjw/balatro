@@ -15,6 +15,7 @@ extends Node
 ## Enum representing the different phases of the game.
 enum Phase { CHOOSE_BLIND, PLAY_ROUND, CALC_RESULTS, SHOP }
 enum Suit { SPADES, HEARTS, CLUBS, DIAMONDS }
+enum Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, J, Q, K, A }
 
 var _log: Log = Log.new("GameController")
 
