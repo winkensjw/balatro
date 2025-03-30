@@ -90,7 +90,7 @@ static func rank_to_string(rank: GameController.Rank) -> String:
 
 
 func _init() -> void:
-	_log.debug("GameController is ready.")
+	_log.debug("GameController is initializing.")
 	ConsoleAdapter.add_command("advance_phase", _advance_phase)
 	ConsoleAdapter.add_command("draw_hand", _draw_hand)
 	ConsoleAdapter.add_command("set_current_score", set_current_score, ["score"], 1, "Sets the current score.")
@@ -104,6 +104,7 @@ func _init() -> void:
 	ConsoleAdapter.add_command("set_ante_target", set_ante_target, ["target"], 1, "Sets the ante target amount.")
 	ConsoleAdapter.add_command("set_current_round", set_current_round, ["round"], 1, "Sets the current round number.")
 	_deck = Deck.new(load(Constants.STANDARD_DECK_RESOURCE_PATH))
+	_log.debug("GameController is ready. Starting game.")
 	start_game()
 
 
