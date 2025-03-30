@@ -1,6 +1,20 @@
+## ============================================================================
+## Card.gd
+## ============================================================================
+## Represents a card in the game, allowing it to be dragged by the player.
+## This class manages the visual appearance of the card (position, rotation,
+## scale) and its behavior during drag and drop actions.
+##
+## @author winkensjw
+## @version 1.0
+## ============================================================================
+class_name Card
 extends Button
 
+## The Marker2D that represents the card's resting position.
 @export var snap_back_position: Marker2D
+
+## Determines whether the card is active and can be interacted with.
 @export var enabled: bool = true
 
 var _time: float = 0.0
@@ -12,6 +26,8 @@ var _veldir2: Vector2 = Vector2(0, 0)
 var _oldpos2: Vector2 = Vector2(0, 0)
 
 
+## Handles input events, such as mouse motion and mouse button presses.
+## @param event: InputEvent The input event that occurred.
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and enabled:
 		_mousepos = event.position + _get_card_offset()
@@ -21,6 +37,8 @@ func _input(event: InputEvent) -> void:
 			_is_dragging_card = false
 
 
+## Called every frame.  Updates the card's appearance and behavior.
+## @param delta: float The time elapsed since the last frame.
 func _process(delta: float) -> void:
 	if enabled:
 		visible = true
@@ -33,34 +51,45 @@ func _process(delta: float) -> void:
 		hide_card()
 
 
+## Called when the card is pressed.  Sets the card to be dragged.
 func _on_button_down() -> void:
 	_is_dragging_card = true
 
 
+## Returns the position the card should snap back to when released.
+## @return Vector2 The snap back position.
 func _get_snap_back_position() -> Vector2:
 	if snap_back_position != null:
 		return snap_back_position.position + _get_card_offset()
 	return Vector2.ZERO + _get_card_offset()
 
 
+## Sets the Marker2D that the card should snap back to.
+## @param pos: Marker2D The new snap back position.
 func set_snap_back_position(pos: Marker2D) -> void:
 	snap_back_position = pos
 
 
+## Returns the card offset.
+## @return Vector2 The card offset.
 func _get_card_offset() -> Vector2:
 	return -(Vector2(142, 190) / 2)
 
 
+## Returns the zoom factor.
+## @return Vector2 The zoom factor.
 func _get_zoom_factor() -> Vector2:
 	return Vector2(1.05, 1.05)
 
 
+## Hides the card by moving it to the snap back position and making it invisible.
 func hide_card() -> void:
 	position = _get_snap_back_position()
 	rotation = 0
 	visible = false
 
 
+## Moves the card towards the mouse position.
 func _move_card_to_mouse_pos() -> void:
 	position = lerp(position, _mousepos, 0.25)
 	rotation += clamp(_veldir.x, -0.3, 0.3)
@@ -70,6 +99,7 @@ func _move_card_to_mouse_pos() -> void:
 	_veldir *= 0
 
 
+## Moves the card towards the snap back position.
 func _move_card_to_snap_back_position() -> void:
 	position = lerp(position, _get_snap_back_position(), 0.25)
 	_veldir2 = (position - _oldpos2) * 0.01532
@@ -82,6 +112,8 @@ func _move_card_to_snap_back_position() -> void:
 	position.y += sin(_time + 360 + 1231) * (0.875 / 2)
 
 
+## Checks if the cursor is currently touching the card.
+## @return bool True if the cursor is touching the card, false otherwise.
 func is_cursor_touching() -> bool:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var start: Vector2 = global_position

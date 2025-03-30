@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ctqi7xwdjfn2y"]
 
-[ext_resource type="Script" uid="uid://bvr7xwwvt0cph" path="res://Entities/Game/Card/card_button.gd" id="1_atcmr"]
+[ext_resource type="Script" uid="uid://bvr7xwwvt0cph" path="res://Entities/Game/Card/card.gd" id="1_atcmr"]
 [ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="3_cguh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cguh5"]
@@ -18,7 +18,7 @@ corner_radius_bottom_left = 10
 atlas = ExtResource("3_cguh5")
 region = Rect2(0, 0, 142, 190)
 
-[node name="Card" type="Button" node_paths=PackedStringArray("snap_back_position")]
+[node name="Card" type="Button"]
 material = SubResource("ShaderMaterial_cguh5")
 offset_left = -72.0
 offset_top = -96.0
@@ -29,7 +29,6 @@ size_flags_horizontal = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cguh5")
 flat = true
 script = ExtResource("1_atcmr")
-snap_back_position = NodePath("")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
