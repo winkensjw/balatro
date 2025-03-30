@@ -46,76 +46,8 @@ func create_card_resource(index: int, suit: GameController.Suit, rank: GameContr
 	var card_res: CardResource = CardResource.new()
 	card_res.score = points_val
 	card_res.texture = atlas_tex
+	card_res.rank = rank
 	card_res.suit = suit
 
-	var save_path: String = OUTPUT_PATH + _map_suit_upper_case(suit) + "/" + str(index) + "_" + _map_rank(rank) + "_" + _map_suit(suit) + ".tres"
+	var save_path: String = OUTPUT_PATH + GameController.suit_to_string(suit) + "/" + str(index) + "_" + GameController.rank_to_string(rank) + "_" + GameController.suit_to_string(suit) + ".tres"
 	ResourceSaver.save(card_res, save_path)
-
-
-## Maps the suit enum to the suit string.
-## @param suit: GameController.Suit the suit enum value
-## @return String the string for the current suit
-func _map_suit(suit: GameController.Suit) -> String:
-	match suit:
-		GameController.Suit.SPADES:
-			return "spades"
-		GameController.Suit.HEARTS:
-			return "hearts"
-		GameController.Suit.CLUBS:
-			return "clubs"
-		GameController.Suit.DIAMONDS:
-			return "diamonds"
-		_:
-			ConsoleAdapter.error("Invalid suit enum: %s" % suit)
-			return "unknown"  # Default
-
-
-func _map_suit_upper_case(suit: GameController.Suit) -> String:
-	match suit:
-		GameController.Suit.SPADES:
-			return "Spades"
-		GameController.Suit.HEARTS:
-			return "Hearts"
-		GameController.Suit.CLUBS:
-			return "Clubs"
-		GameController.Suit.DIAMONDS:
-			return "Diamonds"
-		_:
-			ConsoleAdapter.error("Invalid suit enum: %s" % suit)
-			return "unknown"  # Default
-
-
-## Maps the rank enum to the rank string.
-## @param rank: GameController.Rank the rank enum value
-## @return String the string for the current rank
-func _map_rank(rank: GameController.Rank) -> String:
-	match rank:
-		GameController.Rank.TWO:
-			return "2"
-		GameController.Rank.THREE:
-			return "3"
-		GameController.Rank.FOUR:
-			return "4"
-		GameController.Rank.FIVE:
-			return "5"
-		GameController.Rank.SIX:
-			return "6"
-		GameController.Rank.SEVEN:
-			return "7"
-		GameController.Rank.EIGHT:
-			return "8"
-		GameController.Rank.NINE:
-			return "9"
-		GameController.Rank.TEN:
-			return "10"
-		GameController.Rank.J:
-			return "J"
-		GameController.Rank.Q:
-			return "Q"
-		GameController.Rank.K:
-			return "K"
-		GameController.Rank.A:
-			return "A"
-		_:
-			ConsoleAdapter.error("Invalid rank enum: %s" % rank)
-			return "unknown"  # Default

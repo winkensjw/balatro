@@ -27,6 +27,7 @@ const CURRENT_BLIND_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStat
 const SHOP_SIGN_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStatePanel/ShopSignContainer/shop_sign_container.tscn"
 
 # Cards
+const CARD_UI_SCENE_PATH: String = "res://Entities/Game/Card/card_ui.tscn"
 const CARD_SCENE_DICT = {
 	GameController.Suit.SPADES:
 	{
@@ -93,3 +94,6 @@ const CARD_SCENE_DICT = {
 		GameController.Rank.TWO: "res://Entities/Game/Card/Resources/Diamonds/0_2_diamonds.tres"
 	}
 }
+
+#Decks
+const STANDARD_DECK_RESOURCE_PATH: String = "res://Entities/Game/Decks/Resources/standard_deck.tres"

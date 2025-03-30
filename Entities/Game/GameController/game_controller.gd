@@ -37,10 +37,62 @@ var _ante_target: int = 0
 
 var _current_round: int = 0
 
+var _deck: Deck
+var _hand: Array[Card]
+
+
+static func suit_to_string(suit: GameController.Suit) -> String:
+	match suit:
+		GameController.Suit.SPADES:
+			return "Spades"
+		GameController.Suit.HEARTS:
+			return "Hearts"
+		GameController.Suit.CLUBS:
+			return "Clubs"
+		GameController.Suit.DIAMONDS:
+			return "Diamonds"
+		_:
+			ConsoleAdapter.error("Invalid suit enum: %s" % suit)
+			return "unknown"  # Default
+
+
+static func rank_to_string(rank: GameController.Rank) -> String:
+	match rank:
+		GameController.Rank.TWO:
+			return "2"
+		GameController.Rank.THREE:
+			return "3"
+		GameController.Rank.FOUR:
+			return "4"
+		GameController.Rank.FIVE:
+			return "5"
+		GameController.Rank.SIX:
+			return "6"
+		GameController.Rank.SEVEN:
+			return "7"
+		GameController.Rank.EIGHT:
+			return "8"
+		GameController.Rank.NINE:
+			return "9"
+		GameController.Rank.TEN:
+			return "10"
+		GameController.Rank.J:
+			return "J"
+		GameController.Rank.Q:
+			return "Q"
+		GameController.Rank.K:
+			return "K"
+		GameController.Rank.A:
+			return "A"
+		_:
+			ConsoleAdapter.error("Invalid rank enum: %s" % rank)
+			return "unknown"  # Default
+
 
 func _init() -> void:
 	_log.debug("GameController is ready.")
-	ConsoleAdapter.add_command("advance_phase", advance_phase)
+	ConsoleAdapter.add_command("advance_phase", _advance_phase)
+	ConsoleAdapter.add_command("draw_hand", _draw_hand)
 	ConsoleAdapter.add_command("set_current_score", set_current_score, ["score"], 1, "Sets the current score.")
 	ConsoleAdapter.add_command("set_current_hands", set_current_hands_amount, ["hands"], 1, "Sets the current hands amount.")
 	ConsoleAdapter.add_command("set_max_hands", set_max_hands_amount, ["max_hands"], 1, "Sets the maximum hands amount.")
@@ -51,6 +103,7 @@ func _init() -> void:
 	ConsoleAdapter.add_command("set_current_ante", set_current_ante, ["ante"], 1, "Sets the current ante amount.")
 	ConsoleAdapter.add_command("set_ante_target", set_ante_target, ["target"], 1, "Sets the ante target amount.")
 	ConsoleAdapter.add_command("set_current_round", set_current_round, ["round"], 1, "Sets the current round number.")
+	_deck = Deck.new(load(Constants.STANDARD_DECK_RESOURCE_PATH))
 	start_game()
 
 
@@ -232,15 +285,36 @@ func _set_phase(new_phase: Phase) -> void:
 
 
 ## Advances the game to the next phase based on the current phase.
-func advance_phase() -> void:
+func _advance_phase() -> void:
 	match _current_phase:
 		Phase.CHOOSE_BLIND:
-			_set_phase(Phase.PLAY_ROUND)
+			_enter_play_round()
 		Phase.PLAY_ROUND:
-			_set_phase(Phase.CALC_RESULTS)
+			_enter_calc_results()
 		Phase.CALC_RESULTS:
-			_set_phase(Phase.SHOP)
+			_enter_shop()
 		Phase.SHOP:
-			_set_phase(Phase.CHOOSE_BLIND)
+			_enter_choose_blind()
 		_:
 			_log.warn("Unknown phase: %s" % _current_phase)
+
+
+func _enter_choose_blind() -> void:
+	_set_phase(Phase.CHOOSE_BLIND)
+
+
+func _enter_play_round() -> void:
+	_set_phase(Phase.PLAY_ROUND)
+
+
+func _enter_calc_results() -> void:
+	_set_phase(Phase.CALC_RESULTS)
+
+
+func _enter_shop() -> void:
+	_set_phase(Phase.SHOP)
+
+
+func _draw_hand() -> void:
+	while _hand.size() < _max_hands_amount:
+		_hand.append(_deck.draw_card())

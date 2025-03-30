@@ -35,6 +35,7 @@ SoundManager="*res://addons/resonate/sound_manager/sound_manager.gd"
 MusicManager="*res://addons/resonate/music_manager/music_manager.gd"
 ResonateAdapter="*res://addons/resonate/adaptions/resonate_adapter.gd"
 Globals="*res://globals.gd"
+CardGenerator="*res://Entities/Game/Card/Resources/card_generator.gd"
 
 [debug]
 

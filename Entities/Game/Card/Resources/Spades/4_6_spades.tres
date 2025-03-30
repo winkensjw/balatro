@@ -1,15 +1,15 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dr2svmfbasxjn"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://6hihpgs5vry2"]
 
-[ext_resource type="Script" uid="uid://ctvipljjnhsk" path="res://Entities/Game/Card/Resources/card_resource.gd" id="1_p5dv7"]
-[ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="2_snhid"]
+[ext_resource type="Script" uid="uid://ctvipljjnhsk" path="res://Entities/Game/Card/Resources/card_resource.gd" id="1_cr0y8"]
+[ext_resource type="Texture2D" uid="uid://vd4k34yxfl6w" path="res://Original Resources/textures/2x/8BitDeck.png" id="2_i1c02"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_angi4"]
-atlas = ExtResource("2_snhid")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jctrp"]
+atlas = ExtResource("2_i1c02")
 region = Rect2(568, 570, 142, 190)
 
 [resource]
-script = ExtResource("1_p5dv7")
+script = ExtResource("1_cr0y8")
 score = 6
 suit = 0
-rank = 0
-texture = SubResource("AtlasTexture_angi4")
+rank = 4
+texture = SubResource("AtlasTexture_jctrp")

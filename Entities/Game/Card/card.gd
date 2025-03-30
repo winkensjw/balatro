@@ -68,3 +68,9 @@ func get_texture() -> AtlasTexture:
 ## @param value: AtlasTexture The new texture value.
 func set_texture(value: AtlasTexture) -> void:
 	_texture = value
+
+
+## Returns a string representation of the card.
+## @return String A string representing the card.
+func _to_string() -> String:
+	return "[Card: Score=%s, Suit=%s, Rank=%s]" % [_score, GameController.suit_to_string(_suit), GameController.rank_to_string(_rank)]
