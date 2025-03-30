@@ -35,6 +35,8 @@ var _scene_to_unload: Node
 ## A boolean indicating whether a loading process is in progress.
 var _loading_in_progress: bool = false
 
+var _data: Variant
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,7 +61,7 @@ func _add_loading_screen(transition_type: String = "fade_to_black") -> void:
 ## @param load_into The node to load the scene into (default: null, which loads into the root).
 ## @param scene_to_unload The node to unload after the new scene is loaded (default: null).
 ## @param transition_type The type of transition to use (default: "fade_to_black").
-func change_scenes(scene_to_load: String, load_into: Node = null, scene_to_unload: Node = null, transition_type: String = "fade_to_black") -> void:
+func change_scenes(scene_to_load: String, load_into: Node = null, scene_to_unload: Node = null, transition_type: String = "fade_to_black", data: Variant = null) -> void:
 	if _loading_in_progress:
 		_log.warn("SceneManager is already loading something")
 		return
@@ -70,6 +72,7 @@ func change_scenes(scene_to_load: String, load_into: Node = null, scene_to_unloa
 	_load_scene_into = load_into
 	_scene_to_unload = scene_to_unload
 
+	_data = data
 	_add_loading_screen(transition_type)
 	_load_scene(scene_to_load)
 
@@ -121,12 +124,14 @@ func _monitor_load_status() -> void:
 ## @param path The path to the scene that failed to load.
 func _on_scene_failed_to_load(path: String) -> void:
 	_log.error("Failed to load resource: '%s'" % [path])
+	_data = null
 
 
 ## Called when a scene is invalid.
 ## @param path The path to the scene that is invalid.
 func _on_scene_invalid(path: String) -> void:
 	_log.error("Cannot load resource: '%s'" % [path])
+	_data = null
 
 
 ## Called when a scene has finished loading.
@@ -135,8 +140,8 @@ func _on_scene_finished_loading(incoming_scene: Node) -> void:
 	var outgoing_scene: Node = _scene_to_unload
 
 	if outgoing_scene != null:
-		if outgoing_scene.has_method("get_data") and incoming_scene.has_method("receive_data"):
-			incoming_scene.receive_data(outgoing_scene.get_data())
+		if incoming_scene.has_method("receive_transition_data"):
+			incoming_scene.receive_transition_data(_data)
 
 	_load_scene_into.add_child(incoming_scene)
 	Events.scene_added.emit(incoming_scene, _loading_screen)
@@ -158,4 +163,5 @@ func _on_scene_finished_loading(incoming_scene: Node) -> void:
 
 	# load is complete, free up SceneManager to load something else and report load_complete signal
 	_loading_in_progress = false
+	_data = null
 	Events.load_complete.emit(incoming_scene)

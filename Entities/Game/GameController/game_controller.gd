@@ -88,8 +88,9 @@ static func rank_to_string(rank: GameController.Rank) -> String:
 			return "unknown"  # Default
 
 
-func _init() -> void:
+func _init(game_setup: GameSetup) -> void:
 	_log.debug("GameController is initializing.")
+	ConsoleAdapter.add_command("show_state", func() -> void: ConsoleAdapter.info(_to_string()))
 	ConsoleAdapter.add_command("advance_phase", _advance_phase)
 	ConsoleAdapter.add_command("draw_hand", draw_hand)
 	ConsoleAdapter.add_command("set_current_score", set_current_score, ["score"], 1, "Sets the current score.")
@@ -102,7 +103,18 @@ func _init() -> void:
 	ConsoleAdapter.add_command("set_current_ante", set_current_ante, ["ante"], 1, "Sets the current ante amount.")
 	ConsoleAdapter.add_command("set_ante_target", set_ante_target, ["target"], 1, "Sets the ante target amount.")
 	ConsoleAdapter.add_command("set_current_round", set_current_round, ["round"], 1, "Sets the current round number.")
-	_deck = Deck.new(load(Constants.STANDARD_DECK_RESOURCE_PATH))
+
+	# Initialize game state from GameSetup
+	_max_hands_amount = game_setup.get_max_hands_amount()
+	_max_discards_amount = game_setup.get_max_discards_amount()
+	_current_money = game_setup.get_money()
+	_current_ante = game_setup.get_ante()
+	_ante_target = game_setup.get_ante_target()
+	_current_round = game_setup.get_round()
+	_max_hand_size = game_setup.get_max_hand_size()
+	_deck = Deck.new(game_setup.get_deck())
+	_hand = []
+
 	_log.debug("GameController is ready. Starting game.")
 	start_game()
 
@@ -338,3 +350,18 @@ func _advance_phase() -> void:
 func draw_hand() -> void:
 	while _hand.size() < _max_hand_size:
 		_hand.append(_deck.draw_card())
+
+
+## Returns a string representation of the GameController.
+func _to_string() -> String:
+	var hand_string: String = "["
+	for card in _hand:
+		hand_string += str(card) + ", "
+	if _hand.size() > 0:
+		hand_string = hand_string.substr(0, hand_string.length() - 2)  # Remove trailing ", "
+	hand_string += "]"
+
+	return (
+		"[GameController: Phase=%s, Score=%s, Hands=%s/%s, Discards=%s/%s, Money=%s, Ante=%s/%s, Round=%s, MaxHandSize=%s, Deck=%s, Hand=%s]"
+		% [_current_phase, _current_score, _current_hands_amount, _max_hands_amount, _current_discards_amount, _max_discards_amount, _current_money, _current_ante, _ante_target, _current_round, _max_hand_size, _deck, hand_string]
+	)

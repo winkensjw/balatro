@@ -72,3 +72,8 @@ func get_texture() -> AtlasTexture:
 
 func set_texture(value: AtlasTexture) -> void:
 	_texture = value
+
+
+## Returns a string representation of the Deck.
+func _to_string() -> String:
+	return "[Deck: Card Pile Count=%s, Discard Pile Count=%s]" % [_card_pile.size(), _discard_pile.size()]

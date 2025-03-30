@@ -63,8 +63,8 @@ func _on_scene_changed(loaded_scene: Node) -> void:
 
 
 ## Called when the main menu is closed.
-func _on_scene_change_requested(scene_path: String) -> void:
-	SceneManager.change_scenes(scene_path, self, _current_scene)
+func _on_scene_change_requested(scene_path: String, data: Variant) -> void:
+	SceneManager.change_scenes(scene_path, self, _current_scene, "fade_to_black", data)
 
 
 ## Called when the game is requested to quit.

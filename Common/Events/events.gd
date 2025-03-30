@@ -20,7 +20,7 @@ signal transition_in_complete
 signal scene_finished_loading(scene: Node)
 signal scene_invalid(scene_path: String)
 signal scene_failed_to_load(scene_path: String)
-signal scene_change_requested(scene_path: String)
+signal scene_change_requested(scene_path: String, data: Variant)
 
 # Modal Manager
 signal show_dialog(dialog: PackedScene, animate: bool)

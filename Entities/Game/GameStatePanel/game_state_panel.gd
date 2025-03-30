@@ -45,22 +45,22 @@ func _add_panel(container_scene: PackedScene, initial_position: Vector2 = _offsc
 	return container
 
 
-func _on_phase_changed(new_phase: GameController.Phase) -> void:
+func _on_phase_changed(new_phase: Phase) -> void:
 	var old_container: Control = _current_container
-	match new_phase:
-		GameController.Phase.CHOOSE_BLIND:
+	match new_phase._phase:
+		Phase.PhaseType.CHOOSE_BLIND:
 			_log.debug("Phase changed to ChooseBlind")
 			var new_container: Control = _add_panel(_choose_blind_container_scene)
 			switch_panel(old_container, new_container)
-		GameController.Phase.PLAY_ROUND:
+		Phase.PhaseType.PLAY_ROUND:
 			_log.debug("Phase changed to PlayRound")
 			var new_container: Control = _add_panel(_current_blind_container_scene)
 			switch_panel(old_container, new_container)
-		GameController.Phase.SHOP:
+		Phase.PhaseType.SHOP:
 			_log.debug("Phase changed to Shop")
 			var new_container: Control = _add_panel(_shop_sign_container_scene)
 			switch_panel(old_container, new_container)
-		GameController.Phase.CALC_RESULTS:
+		Phase.PhaseType.CALC_RESULTS:
 			_log.debug("Phase changed to CalcResults")
 			_log.warn("Phase not supported yet.")
 		_:
