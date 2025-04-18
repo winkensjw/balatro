@@ -7,6 +7,7 @@ var _deck_resource: DeckResource
 var _discard_pile: Array[Card]
 var _card_pile: Array[Card]
 var _texture: AtlasTexture
+var _deck_size: int
 
 
 ## Called when the node is initialized,
@@ -21,6 +22,8 @@ func _init(deck_resource: DeckResource) -> void:
 	_card_pile.resize(_deck_resource.card_resources.size())
 	for i in range(_deck_resource.card_resources.size()):
 		_card_pile[i] = Card.new(_deck_resource.card_resources[i])
+
+	_deck_size = _card_pile.size()
 	shuffle()
 
 
@@ -37,6 +40,7 @@ func draw_card() -> Card:
 	if _card_pile.size() > 0:
 		var card: Card = _card_pile.pop_front()
 		_log.debug("Card drawn. %s Remaining cards: %s" % [card, _card_pile.size()])
+		Events.card_drawn.emit(card)
 		return card
 
 	_log.warn("Deck is empty, cannot draw card.")
@@ -44,15 +48,19 @@ func draw_card() -> Card:
 	return null
 
 
+func get_deck_size() -> int:
+	return _deck_size
+
+
 ## Returns the number of cards remaining in the deck.
 ## @return int The number of cards in the deck.
-func get_card_pile_count() -> int:
+func get_card_pile_size() -> int:
 	return _card_pile.size()
 
 
 ## Returns the number of dicarded cards
 ## @return int The number of cards in the discard pile
-func get_discard_pile_count() -> int:
+func get_discard_pile_size() -> int:
 	return _discard_pile.size()
 
 

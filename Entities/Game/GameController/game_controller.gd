@@ -105,15 +105,15 @@ func _init(game_setup: GameSetup) -> void:
 	ConsoleAdapter.add_command("set_current_round", set_current_round, ["round"], 1, "Sets the current round number.")
 
 	# Initialize game state from GameSetup
-	_max_hands_amount = game_setup.get_max_hands_amount()
-	_max_discards_amount = game_setup.get_max_discards_amount()
-	_current_money = game_setup.get_money()
-	_current_ante = game_setup.get_ante()
-	_ante_target = game_setup.get_ante_target()
-	_current_round = game_setup.get_round()
-	_max_hand_size = game_setup.get_max_hand_size()
-	_deck = Deck.new(game_setup.get_deck())
-	_hand = []
+	set_max_hands_amount(game_setup.get_max_hands_amount())
+	set_max_discards_amount(game_setup.get_max_discards_amount())
+	set_current_money(game_setup.get_money())
+	set_ante_target(game_setup.get_ante_target())
+	set_current_ante(game_setup.get_ante())
+	set_current_round(game_setup.get_round())
+	set_max_hand_size(game_setup.get_max_hand_size())
+	set_deck(Deck.new(game_setup.get_deck()))
+	set_hand([])
 
 	_log.debug("GameController is ready. Starting game.")
 	start_game()
@@ -288,6 +288,7 @@ func get_deck() -> Deck:
 ## @param value: Deck The new deck value.
 func set_deck(value: Deck) -> void:
 	_deck = value
+	Events.deck_changed.emit(_deck)
 
 
 ## Returns the hand.
@@ -350,6 +351,14 @@ func _advance_phase() -> void:
 func draw_hand() -> void:
 	while _hand.size() < _max_hand_size:
 		_hand.append(_deck.draw_card())
+
+
+func reset_hands() -> void:
+	set_current_hands_amount(get_max_hands_amount())
+
+
+func reset_discards() -> void:
+	set_current_discards_amount(get_max_discards_amount())
 
 
 ## Returns a string representation of the GameController.

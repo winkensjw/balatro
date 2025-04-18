@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceoibahaxdmrm"]
+[gd_scene load_steps=8 format=3 uid="uid://ceoibahaxdmrm"]
 
 [ext_resource type="PackedScene" uid="uid://c7cdo73n4urua" path="res://Entities/Game/GameStatePanel/game_state_panel.tscn" id="1_86lv3"]
 [ext_resource type="Script" uid="uid://cxqywlxlrqc5l" path="res://Entities/Game/game.gd" id="1_g26f1"]
 [ext_resource type="Shader" uid="uid://upu7q5shusck" path="res://Entities/Game/game_background.gdshader" id="1_idflj"]
+[ext_resource type="PackedScene" uid="uid://bkav1ggjva0it" path="res://Entities/Game/Decks/deck_ui.tscn" id="4_krqhw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krqhw"]
 bg_color = Color(0.935592, 5.10186e-06, 0.580486, 1)
@@ -59,3 +60,9 @@ theme_override_constants/margin_left = 50
 [node name="GameStatePanel" parent="MarginContainer" instance=ExtResource("1_86lv3")]
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="DeckUi" parent="." instance=ExtResource("4_krqhw")]
+offset_left = 1673.0
+offset_top = 804.0
+offset_right = 1673.0
+offset_bottom = 804.0

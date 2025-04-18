@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkav1ggjva0it"]
+
+[ext_resource type="Script" uid="uid://dsql4k10x141i" path="res://Entities/Game/Decks/deck_ui.gd" id="1_7702y"]
+[ext_resource type="Texture2D" uid="uid://dvreurxpv1dac" path="res://Original Resources/textures/2x/Enhancers.png" id="2_73qr2"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="3_73qr2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7702y"]
+atlas = ExtResource("2_73qr2")
+region = Rect2(0, 0, 142, 190)
+
+[node name="DeckUi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7702y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeckTexture" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7702y")
+
+[node name="DeckLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("3_73qr2")
+theme_override_font_sizes/font_size = 24
+text = "52/52"
