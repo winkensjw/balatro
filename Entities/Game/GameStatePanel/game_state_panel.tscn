@@ -15,6 +15,7 @@ border_width_right = 5
 border_color = Color(1, 0.270588, 0.235294, 1)
 
 [node name="GameStatePanel" type="Control"]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 3
 anchors_preset = 9
 anchor_bottom = 1.0

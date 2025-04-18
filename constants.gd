@@ -96,4 +96,5 @@ const CARD_SCENE_DICT = {
 }
 
 #Decks
+const DECK_UI_SCENE_PATH: String = "res://Entities/Game/Decks/deck_ui.tscn"
 const STANDARD_DECK_RESOURCE_PATH: String = "res://Entities/Game/Decks/Resources/standard_deck.tres"

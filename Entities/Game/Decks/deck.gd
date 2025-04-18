@@ -1,5 +1,5 @@
 class_name Deck
-extends Node
+extends RefCounted
 
 var _log: Log = Log.new("Deck")
 
@@ -8,6 +8,10 @@ var _discard_pile: Array[Card]
 var _card_pile: Array[Card]
 var _texture: AtlasTexture
 var _deck_size: int
+
+var _deck_ui: DeckUi
+
+var _deck_ui_scene: PackedScene = preload(Constants.DECK_UI_SCENE_PATH)
 
 
 ## Called when the node is initialized,
@@ -85,3 +89,19 @@ func set_texture(value: AtlasTexture) -> void:
 ## Returns a string representation of the Deck.
 func _to_string() -> String:
 	return "[Deck: Card Pile Count=%s, Discard Pile Count=%s]" % [_card_pile.size(), _discard_pile.size()]
+
+
+func get_ui() -> DeckUi:
+	if _deck_ui == null:
+		return render()
+	return _deck_ui
+
+
+func render() -> DeckUi:
+	_deck_ui = _deck_ui_scene.instantiate()
+	_deck_ui._set_deck(self)
+	return _deck_ui
+
+
+func destroy() -> void:
+	_deck_ui.queue_free()

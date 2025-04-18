@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c7cdo73n4urua" path="res://Entities/Game/GameStatePanel/game_state_panel.tscn" id="1_86lv3"]
 [ext_resource type="Script" uid="uid://cxqywlxlrqc5l" path="res://Entities/Game/game.gd" id="1_g26f1"]
 [ext_resource type="Shader" uid="uid://upu7q5shusck" path="res://Entities/Game/game_background.gdshader" id="1_idflj"]
-[ext_resource type="PackedScene" uid="uid://bkav1ggjva0it" path="res://Entities/Game/Decks/deck_ui.tscn" id="4_krqhw"]
+[ext_resource type="PackedScene" uid="uid://cnlvwnnh3n5ak" path="res://Entities/Game/GamePlayArea/game_play_area.tscn" id="4_krqhw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krqhw"]
 bg_color = Color(0.935592, 5.10186e-06, 0.580486, 1)
@@ -48,21 +48,22 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_86lv3")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="GameStateArea" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 50
 
-[node name="GameStatePanel" parent="MarginContainer" instance=ExtResource("1_86lv3")]
+[node name="GameStatePanel" parent="HBoxContainer/GameStateArea" instance=ExtResource("1_86lv3")]
 layout_mode = 2
-size_flags_horizontal = 0
 
-[node name="DeckUi" parent="." instance=ExtResource("4_krqhw")]
-offset_left = 1673.0
-offset_top = 804.0
-offset_right = 1673.0
-offset_bottom = 804.0
+[node name="GamePlayArea" parent="HBoxContainer" instance=ExtResource("4_krqhw")]
+layout_mode = 2
+size_flags_horizontal = 3

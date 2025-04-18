@@ -17,6 +17,8 @@ extends Button
 ## Determines whether the card is active and can be interacted with.
 @export var enabled: bool = true
 
+var _card: Card
+
 var _time: float = 0.0
 var _mousepos: Vector2 = Vector2(0, 0)
 var _is_dragging_card: bool = false
@@ -29,10 +31,12 @@ var _oldpos2: Vector2 = Vector2(0, 0)
 @onready var _sprite: Sprite2D = $Sprite
 
 
-## Initializes the card with a given texture.
-## @param texture: Texture2D The texture to set on the card's sprite.
-func initialize(texture: Texture2D) -> void:
-	_sprite.texture = texture
+func _ready() -> void:
+	_sprite.texture = _card.get_texture()
+
+
+func set_card(card: Card) -> void:
+	_card = card
 
 
 ## Called every frame.  Updates the card's appearance and behavior.

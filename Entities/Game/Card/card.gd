@@ -17,6 +17,10 @@ var _suit: GameController.Suit
 var _rank: GameController.Rank
 var _texture: AtlasTexture
 
+var _card_ui: CardUi
+
+var _card_ui_scene: PackedScene = preload(Constants.CARD_UI_SCENE_PATH)
+
 
 func _init(card_resource: CardResource) -> void:
 	_card_resource = card_resource
@@ -74,3 +78,19 @@ func set_texture(value: AtlasTexture) -> void:
 ## @return String A string representing the card.
 func _to_string() -> String:
 	return "[Card: Score=%s, Suit=%s, Rank=%s]" % [_score, GameController.suit_to_string(_suit), GameController.rank_to_string(_rank)]
+
+
+func get_ui() -> CardUi:
+	if _card_ui == null:
+		return render()
+	return _card_ui
+
+
+func render() -> CardUi:
+	_card_ui = _card_ui_scene.instantiate()
+	_card_ui.set_card(self)
+	return _card_ui
+
+
+func destroy() -> void:
+	_card_ui.queue_free()

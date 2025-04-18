@@ -9,6 +9,6 @@ func _init(game_controller: GameController) -> void:
 
 func enter() -> void:
 	super.enter()
-	_game_controller.reset_hands()
-	_game_controller.reset_discards()
+	_game_controller.reset_hand_count()
+	_game_controller.reset_discard_count()
 	_game_controller.draw_hand()

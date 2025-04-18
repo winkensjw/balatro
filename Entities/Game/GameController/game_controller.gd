@@ -288,7 +288,7 @@ func get_deck() -> Deck:
 ## @param value: Deck The new deck value.
 func set_deck(value: Deck) -> void:
 	_deck = value
-	Events.deck_changed.emit(_deck)
+	Events.deck_added.emit(_deck)
 
 
 ## Returns the hand.
@@ -350,14 +350,22 @@ func _advance_phase() -> void:
 
 func draw_hand() -> void:
 	while _hand.size() < _max_hand_size:
-		_hand.append(_deck.draw_card())
+		draw_card()
 
 
-func reset_hands() -> void:
+func draw_card() -> void:
+	add_card_to_hand(_deck.draw_card())
+
+
+func add_card_to_hand(card: Card) -> void:
+	_hand.append(card)
+
+
+func reset_hand_count() -> void:
 	set_current_hands_amount(get_max_hands_amount())
 
 
-func reset_discards() -> void:
+func reset_discard_count() -> void:
 	set_current_discards_amount(get_max_discards_amount())
 
 
