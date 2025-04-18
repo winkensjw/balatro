@@ -19,7 +19,7 @@ extends Button
 
 var _card: Card
 
-var _time: float = 0.0
+var _time: float = randf_range(0, 1000)
 var _mousepos: Vector2 = Vector2(0, 0)
 var _is_dragging_card: bool = false
 var _veldir: Vector2 = Vector2(0, 0)
@@ -56,7 +56,6 @@ func _process(delta: float) -> void:
 
 ## Called when the card is pressed.  Sets the card to be dragged.
 func _on_button_down() -> void:
-	print("Button down: ")
 	_is_dragging_card = true
 
 
@@ -127,6 +126,7 @@ func _move_card_to_snap_back_position() -> void:
 
 
 func _animate_floating() -> void:
+	scale = lerp(scale, Vector2.ONE, 0.25)
 	rotation += sin(_time + 1321) * (0.003625 / 2)
 	global_position.x += cos(_time + 180 + 1321) * (0.875 / 2)
 	global_position.y += sin(_time + 360 + 1231) * (0.875 / 2)

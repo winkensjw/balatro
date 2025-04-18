@@ -162,7 +162,7 @@ func save_data() -> Dictionary:
 	_log.info("Saving settings")  # Use _log here!
 	var data: Dictionary = {}
 	data["version_id"] = VERSION_ID
-	data["master_volume_db"] = _master_volume_db
+	data["master_volume_db"] = _master_volume_db  # FIXME jwi somehow this is set to max when muting sound via slider
 	data["music_volume_db"] = _music_volume_db
 	data["game_volume_db"] = _game_volume_db
 	data["game_speed"] = _game_speed_to_string(_game_speed)
