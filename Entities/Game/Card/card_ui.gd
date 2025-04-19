@@ -25,9 +25,8 @@ var _time: float = randf_range(0, 1000)
 var _mousepos: Vector2 = Vector2(0, 0)
 var _is_dragging_card: bool = false
 var _veldir: Vector2 = Vector2(0, 0)
-var _oldpos: Vector2 = Vector2(0, 0)
 var _veldir2: Vector2 = Vector2(0, 0)
-var _oldpos2: Vector2 = Vector2(0, 0)
+var _oldpos: Vector2 = Vector2(0, 0)
 
 ##Reference to the sprite
 @onready var _sprite: Sprite2D = $Sprite
@@ -61,15 +60,21 @@ func _on_button_down() -> void:
 	_is_dragging_card = true
 
 
+func _on_button_up() -> void:
+	_is_dragging_card = false
+
+
 ## Handles input events, such as mouse motion and mouse button presses.
 ## @param event: InputEvent The input event that occurred.
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and enabled:
 		_mousepos = event.position + _get_card_offset()
 		_veldir = clamp(event.velocity / 4000, Vector2(-0.3, -0.3), Vector2(0.3, 0.3))
-	if event is InputEventMouseButton and enabled:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
-			_is_dragging_card = false
+
+
+#if event is InputEventMouseButton and enabled:
+#		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
+#			_is_dragging_card = false
 
 
 ## Returns the position the card should snap back to when released.
@@ -131,18 +136,17 @@ func _move_card_to_mouse_pos() -> void:
 	rotation += clamp(_veldir.x, -0.3, 0.3)
 	rotation *= 0.8
 	scale = lerp(scale, _get_zoom_factor(), 0.25)
-	_oldpos = _mousepos
 	_veldir *= 0
 
 
 ## Moves the card towards the snap back position.
 func _move_card_to_snap_back_position() -> void:
 	global_position = lerp(global_position, _get_snap_back_position(), 0.25)
-	_veldir2 = (position - _oldpos2) * 0.01532
-	_oldpos2 = position
+	_veldir2 = (position - _oldpos) * 0.01532
+	_oldpos = position
 	rotation += clamp(_veldir2.x, -0.3, 0.25)
 	rotation *= 0.8
-	_veldir2 = (position - _oldpos2) * 0.01532
+	_veldir2 = (position - _oldpos) * 0.01532
 
 
 func _animate_floating() -> void:

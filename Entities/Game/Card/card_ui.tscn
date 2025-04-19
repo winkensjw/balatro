@@ -43,3 +43,4 @@ texture = SubResource("AtlasTexture_sg4qm")
 offset = Vector2(71, 95)
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
