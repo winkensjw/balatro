@@ -17,6 +17,7 @@ func can_draw(num: int) -> bool:
 
 func add_card(card: Card) -> void:
 	_cards.append(card)
+	Events.hand_changed.emit(self)
 
 
 ## Returns the maximum hand size.

@@ -18,7 +18,6 @@ var _deck_ui_scene: PackedScene = preload(Constants.DECK_UI_SCENE_PATH)
 ## @param deck_resource: DeckResource
 func _init(deck_resource: DeckResource) -> void:
 	_log.debug("Initializing Deck")
-	ConsoleAdapter.add_command("draw_card", draw_card)
 	_deck_resource = deck_resource
 	_texture = deck_resource.texture
 
@@ -44,7 +43,7 @@ func draw_card() -> Card:
 	if _card_pile.size() > 0:
 		var card: Card = _card_pile.pop_front()
 		_log.debug("Card drawn. %s Remaining cards: %s" % [card, _card_pile.size()])
-		Events.card_drawn.emit(card)
+		_deck_ui.spawn_card(card)
 		return card
 
 	_log.warn("Deck is empty, cannot draw card.")

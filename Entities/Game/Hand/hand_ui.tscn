@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://brdx5ma3464b1"]
+[gd_scene load_steps=4 format=3 uid="uid://brdx5ma3464b1"]
 
 [ext_resource type="Script" uid="uid://cjfvmemp7b0rg" path="res://Entities/Game/Hand/hand_ui.gd" id="1_qkc1u"]
+[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_7kb7b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4heis"]
 bg_color = Color(0, 0, 0, 0.196078)
@@ -15,10 +16,20 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qkc1u")
 
-[node name="HandContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(0, 190)
+[node name="HandVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_top = 4.0
 offset_right = 1090.0
 offset_bottom = 194.0
+
+[node name="HandContainer" type="PanelContainer" parent="HandVBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4heis")
+
+[node name="HandLabel" type="Label" parent="HandVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7kb7b")
+theme_override_font_sizes/font_size = 24
+text = "0/0"
+horizontal_alignment = 1

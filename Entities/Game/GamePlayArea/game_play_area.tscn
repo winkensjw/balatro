@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnlvwnnh3n5ak"]
+[gd_scene load_steps=3 format=3 uid="uid://cnlvwnnh3n5ak"]
 
 [ext_resource type="Script" uid="uid://cd8qlojapdlcl" path="res://Entities/Game/GamePlayArea/game_play_area.gd" id="1_4heis"]
 [ext_resource type="PackedScene" uid="uid://brdx5ma3464b1" path="res://Entities/Game/Hand/hand_ui.tscn" id="2_pa8mr"]
-[ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_r5m44"]
 
 [node name="GamePlayArea" type="Control"]
 layout_mode = 3
@@ -16,21 +15,9 @@ script = ExtResource("1_4heis")
 [node name="DeckSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(1170, 800)
 
-[node name="HandVBoxContainer" type="VBoxContainer" parent="."]
+[node name="HandUi" parent="." instance=ExtResource("2_pa8mr")]
 layout_mode = 2
 offset_left = 30.0
-offset_top = 800.0
+offset_top = 786.0
 offset_right = 1120.0
-offset_bottom = 990.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HandArea" parent="HandVBoxContainer" instance=ExtResource("2_pa8mr")]
-layout_mode = 2
-
-[node name="HandLabel" type="Label" parent="HandVBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_r5m44")
-theme_override_font_sizes/font_size = 24
-text = "3/8"
-horizontal_alignment = 1
+offset_bottom = 976.0

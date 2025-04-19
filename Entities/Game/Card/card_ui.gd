@@ -17,6 +17,8 @@ extends Button
 ## Determines whether the card is active and can be interacted with.
 @export var enabled: bool = true
 
+var _log: Log = Log.new("CardUi")
+
 var _card: Card
 
 var _time: float = randf_range(0, 1000)
@@ -43,7 +45,7 @@ func set_card(card: Card) -> void:
 ## @param delta: float The time elapsed since the last frame.
 func _process(delta: float) -> void:
 	if enabled:
-		visible = true
+		show_card()
 		_time += 1 * delta
 		if _is_dragging_card:
 			_move_card_to_mouse_pos()
@@ -103,6 +105,24 @@ func hide_card() -> void:
 	global_position = _get_snap_back_position()
 	rotation = 0
 	visible = false
+
+
+func show_card() -> void:
+	visible = true
+
+
+## Moves card to the given parent node at the given card position (global).
+## If instant is set to true the card is teleported there instantly.
+func move_card(parent: Node, card_position: Vector2, instant: bool = false) -> void:
+	if get_parent() == null:
+		parent.add_child(self)
+	elif get_parent() != parent:
+		reparent(parent, true)
+
+	_log.debug("Moving card to position: %s" % card_position)
+	if instant:
+		global_position = card_position
+	set_snap_back_position(card_position)
 
 
 ## Moves the card towards the mouse position.

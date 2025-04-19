@@ -41,6 +41,7 @@ func _init(game_setup: GameSetup) -> void:
 	ConsoleAdapter.add_command("show_state", func() -> void: ConsoleAdapter.info(_to_string()))
 	ConsoleAdapter.add_command("advance_phase", _advance_phase)
 	ConsoleAdapter.add_command("draw_hand", draw_hand)
+	ConsoleAdapter.add_command("draw_card", draw_card)
 	ConsoleAdapter.add_command("set_current_score", set_current_score, ["score"], 1, "Sets the current score.")
 	ConsoleAdapter.add_command("set_current_hands", set_current_hands_amount, ["hands"], 1, "Sets the current hands amount.")
 	ConsoleAdapter.add_command("set_max_hands", set_max_hands_amount, ["max_hands"], 1, "Sets the maximum hands amount.")
@@ -299,10 +300,12 @@ func _advance_phase() -> void:
 func draw_hand() -> void:
 	while _hand.can_draw(1):
 		draw_card()
+		await Engine.get_main_loop().create_timer(0.1).timeout
 
 
 func draw_card() -> void:
-	_hand.add_card(_deck.draw_card())
+	var card: Card = _deck.draw_card()
+	_hand.add_card(card)
 
 
 func reset_hand_count() -> void:

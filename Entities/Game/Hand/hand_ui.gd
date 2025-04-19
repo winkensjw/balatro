@@ -1,35 +1,46 @@
-class_name HandArea
+class_name HandUi
 extends Control
 
-# FIXME remove debug hand
-var _card_resource: CardResource = preload(Constants.CARD_SCENE_DICT[Card.Suit.SPADES][Card.Rank.A])
-
-var _cards_to_display: int = 12
-var _card_width: int = 142
 var _margin_px: int = 30
 
+@onready var hand_label: Label = $HandVBoxContainer/HandLabel
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	_add_cards.call_deferred()
+	Events.hand_changed.connect(_on_hand_changed)
+	_update_hand_label(null)
 
 
-func _add_cards() -> void:
-	var card_positions: Array[Vector2] = compute_card_positions()
-	for card_position: Vector2 in card_positions:
-		var card: Card = Card.new(_card_resource)
-		var card_ui: CardUi = card.get_ui()
-		add_child(card_ui)
-		card_ui.global_position = card_position
-		card_ui.set_snap_back_position(card_position)
+func _on_hand_changed(hand: Hand) -> void:
+	_update_hand_label(hand)
+	_add_cards(hand)
 
 
-func compute_card_positions() -> Array[Vector2]:
+func _update_hand_label(hand: Hand) -> void:
+	if hand == null:
+		hand_label.text = ""
+	else:
+		hand_label.text = Strings.join("/", [hand.size(), hand.get_max_hand_size()])
+
+
+func _add_cards(hand: Hand) -> void:
+	var card_positions: Array[Vector2] = compute_card_positions(hand.size())
+	for i in range(hand.size()):
+		var card_position: Vector2 = card_positions[i]
+		var card_ui: CardUi = hand._cards[i].get_ui()
+		card_ui.move_card(self, card_position)
+
+
+func _get_card_offset() -> Vector2:
+	return Vector2(142, 190) / 2
+
+
+func compute_card_positions(cards_to_display: int) -> Array[Vector2]:
 	var start: Vector2 = global_position
 	start.x += _margin_px
 	var end: Vector2 = global_position
-	end.x += get_child(0).size.x - _margin_px - _card_width
-	return compute_equidistant_positions(start, end, _cards_to_display, _card_width + 10)
+	end.x += get_child(0).size.x - _margin_px - Constants.CARD_WIDTH
+	return compute_equidistant_positions(start, end, cards_to_display, Constants.CARD_WIDTH + 10)
 
 
 func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spacing: float) -> Array[Vector2]:
@@ -41,7 +52,7 @@ func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spa
 	var total_distance: float = start.distance_to(end)
 
 	if n == 1:
-		positions.append((start + end) / 2.0)
+		positions.append((start + end) / 2.0 + _get_card_offset())
 		return positions
 
 	# Calculate the actual spacing based on the total distance and number of positions
@@ -60,17 +71,7 @@ func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spa
 	for i in range(n):
 		var current_distance: float = offset + float(i) * spacing
 		var new_position: Vector2 = start + direction * current_distance
-		new_position += Vector2(142, 190) / 2  # card offset
+		new_position += _get_card_offset()
 		positions.append(new_position)
 
 	return positions
-
-
-func _add_marker(pos: Vector2) -> Marker2D:
-	var marker: Marker2D = Marker2D.new()
-	add_child(marker)
-	marker.global_position = pos
-	var label: Label = Label.new()
-	label.text = "X"
-	marker.add_child(label)
-	return marker

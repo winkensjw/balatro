@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwcagyfjgmt32"]
+[gd_scene load_steps=11 format=3 uid="uid://bwcagyfjgmt32"]
 
 [ext_resource type="Script" uid="uid://c5qc734pysuk6" path="res://addons/resonate/music_manager/music_bank.gd" id="1_kwttv"]
 [ext_resource type="Script" uid="uid://dgihdugfw6sx2" path="res://addons/resonate/music_manager/music_track_resource.gd" id="2_u2bi7"]
 [ext_resource type="Script" uid="uid://nhtytsdam2n2" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="3_cwlua"]
 [ext_resource type="AudioStream" uid="uid://lauwxua3imlp" path="res://Entities/Audio/audio/music1.ogg" id="4_ltpfl"]
+[ext_resource type="Script" uid="uid://cwhm6yp81cy0m" path="res://addons/resonate/sound_manager/sound_bank.gd" id="5_u2bi7"]
+[ext_resource type="Script" uid="uid://dghaoxe23d4c2" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="6_ltpfl"]
+[ext_resource type="AudioStream" uid="uid://0cw2mtv7q00k" path="res://Original Resources/sounds/card1.ogg" id="7_6tma1"]
 
 [sub_resource type="Resource" id="Resource_6tma1"]
 script = ExtResource("3_cwlua")
 name = "music1"
 enabled = true
-volume = 0.0
+volume = -10.0
 stream = ExtResource("4_ltpfl")
 metadata/_custom_type_script = "uid://nhtytsdam2n2"
 
@@ -20,6 +23,15 @@ bus = ""
 stems = Array[ExtResource("3_cwlua")]([SubResource("Resource_6tma1")])
 metadata/_custom_type_script = "uid://dgihdugfw6sx2"
 
+[sub_resource type="Resource" id="Resource_20dtx"]
+script = ExtResource("6_ltpfl")
+name = "card_sound"
+bus = ""
+volume = 0.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("7_6tma1")])
+metadata/_custom_type_script = "uid://dghaoxe23d4c2"
+
 [node name="Audio" type="Node"]
 
 [node name="MusicBank" type="Node" parent="."]
@@ -27,3 +39,9 @@ script = ExtResource("1_kwttv")
 label = "music"
 tracks = Array[ExtResource("2_u2bi7")]([SubResource("Resource_uoaag")])
 metadata/_custom_type_script = "uid://c5qc734pysuk6"
+
+[node name="SoundBank" type="Node" parent="."]
+script = ExtResource("5_u2bi7")
+label = "sound"
+events = Array[ExtResource("6_ltpfl")]([SubResource("Resource_20dtx")])
+metadata/_custom_type_script = "uid://cwhm6yp81cy0m"

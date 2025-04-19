@@ -98,7 +98,7 @@ func get_suit() -> Suit:
 
 
 ## Sets the suit of the card.
-## @param value: GameController.Suit The new suit value.
+## @param value: Card.Suit The new suit value.
 func set_suit(value: Suit) -> void:
 	_suit = value
 

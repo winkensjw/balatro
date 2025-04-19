@@ -43,4 +43,5 @@ signal phase_changed(new_phase: Phase)
 signal round_score_changed(new_amount: int)
 signal card_drawn(drawn_card: Card)
 signal deck_added(deck: Deck)
+signal hand_changed(hand: Hand)
 signal game_lost

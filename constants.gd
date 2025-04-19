@@ -8,6 +8,8 @@ const SAVE_MANAGER_SETTINGS_RESOURCE_PATH: String = "res://Common/SaveManager/Da
 const AUDIO_SCENE_PATH: String = "res://Entities/Audio/audio.tscn"
 const MUSIC_BANK_NAME: String = "music"
 const MUSIC_TRACK_BACKGROUND_MUSIC_NAME: String = "background_music"
+const SOUND_BANK_NAME: String = "sound"
+const SOUND_TRACK_CARD_SOUND: String = "card_sound"
 
 # UI Elements
 const CRT_FTILER_SCENE_PATH: String = "res://Common/UiElements/crt_filter.tscn"
@@ -27,6 +29,7 @@ const CURRENT_BLIND_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStat
 const SHOP_SIGN_CONTAINER_SCENE_PATH: String = "res://Entities/Game/GameStatePanel/ShopSignContainer/shop_sign_container.tscn"
 
 # Cards
+const CARD_WIDTH = 142
 const CARD_UI_SCENE_PATH: String = "res://Entities/Game/Card/card_ui.tscn"
 const CARD_SCENE_DICT = {
 	Card.Suit.SPADES:
