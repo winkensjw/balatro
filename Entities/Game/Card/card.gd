@@ -10,16 +10,67 @@
 class_name Card
 extends RefCounted
 
+enum Suit { SPADES, HEARTS, CLUBS, DIAMONDS }
+enum Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, J, Q, K, A }
+
 var _card_resource: CardResource
 
 var _score: int
-var _suit: GameController.Suit
-var _rank: GameController.Rank
+var _suit: Suit
+var _rank: Rank
 var _texture: AtlasTexture
 
 var _card_ui: CardUi
 
 var _card_ui_scene: PackedScene = preload(Constants.CARD_UI_SCENE_PATH)
+
+
+static func suit_to_string(suit: Card.Suit) -> String:
+	match suit:
+		Card.Suit.SPADES:
+			return "Spades"
+		Card.Suit.HEARTS:
+			return "Hearts"
+		Card.Suit.CLUBS:
+			return "Clubs"
+		Card.Suit.DIAMONDS:
+			return "Diamonds"
+		_:
+			ConsoleAdapter.error("Invalid suit enum: %s" % suit)
+			return "unknown"  # Default
+
+
+static func rank_to_string(rank: Card.Rank) -> String:
+	match rank:
+		Card.Rank.TWO:
+			return "2"
+		Card.Rank.THREE:
+			return "3"
+		Card.Rank.FOUR:
+			return "4"
+		Card.Rank.FIVE:
+			return "5"
+		Card.Rank.SIX:
+			return "6"
+		Card.Rank.SEVEN:
+			return "7"
+		Card.Rank.EIGHT:
+			return "8"
+		Card.Rank.NINE:
+			return "9"
+		Card.Rank.TEN:
+			return "10"
+		Card.Rank.J:
+			return "J"
+		Card.Rank.Q:
+			return "Q"
+		Card.Rank.K:
+			return "K"
+		Card.Rank.A:
+			return "A"
+		_:
+			ConsoleAdapter.error("Invalid rank enum: %s" % rank)
+			return "unknown"  # Default
 
 
 func _init(card_resource: CardResource) -> void:
@@ -42,24 +93,24 @@ func set_score(value: int) -> void:
 
 
 ## Returns the suit of the card.
-func get_suit() -> GameController.Suit:
+func get_suit() -> Suit:
 	return _suit
 
 
 ## Sets the suit of the card.
 ## @param value: GameController.Suit The new suit value.
-func set_suit(value: GameController.Suit) -> void:
+func set_suit(value: Suit) -> void:
 	_suit = value
 
 
 ## Returns the rank of the card.
-func get_rank() -> GameController.Rank:
+func get_rank() -> Rank:
 	return _rank
 
 
 ## Sets the rank of the card.
-## @param value: GameController.Rank The new rank value.
-func set_rank(value: GameController.Rank) -> void:
+## @param value: Card.Rank The new rank value.
+func set_rank(value: Rank) -> void:
 	_rank = value
 
 
@@ -77,7 +128,7 @@ func set_texture(value: AtlasTexture) -> void:
 ## Returns a string representation of the card.
 ## @return String A string representing the card.
 func _to_string() -> String:
-	return "[Card: Score=%s, Suit=%s, Rank=%s]" % [_score, GameController.suit_to_string(_suit), GameController.rank_to_string(_rank)]
+	return "[Card: Score=%s, Suit=%s, Rank=%s]" % [_score, Card.suit_to_string(_suit), Card.rank_to_string(_rank)]
 
 
 func get_ui() -> CardUi:

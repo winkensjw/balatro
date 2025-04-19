@@ -14,10 +14,10 @@ extends Resource
 @export var score: int
 
 ## The suit of the card (e.g., Hearts, Diamonds, Clubs, Spades).
-@export var suit: GameController.Suit
+@export var suit: Card.Suit
 
 ## The rand of the card (e.g., 2, J, A).
-@export var rank: GameController.Rank
+@export var rank: Card.Rank
 
 ## The texture used to represent the card visually.
 @export var texture: AtlasTexture

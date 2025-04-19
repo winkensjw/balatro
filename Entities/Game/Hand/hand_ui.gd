@@ -1,7 +1,8 @@
 class_name HandArea
 extends Control
 
-var _card_resource: CardResource = preload(Constants.CARD_SCENE_DICT[GameController.Suit.SPADES][GameController.Rank.A])
+# FIXME remove debug hand
+var _card_resource: CardResource = preload(Constants.CARD_SCENE_DICT[Card.Suit.SPADES][Card.Rank.A])
 
 var _cards_to_display: int = 12
 var _card_width: int = 142

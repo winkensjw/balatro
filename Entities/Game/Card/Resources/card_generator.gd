@@ -5,22 +5,8 @@ const CARD_WIDTH = 142  # Adjust based on your atlas
 const CARD_HEIGHT = 190
 const COLUMNS = 13  # Number of cards per row in the atlas
 
-var suits: Array[GameController.Suit] = [GameController.Suit.HEARTS, GameController.Suit.CLUBS, GameController.Suit.DIAMONDS, GameController.Suit.SPADES]
-var ranks: Array[GameController.Rank] = [
-	GameController.Rank.TWO,
-	GameController.Rank.THREE,
-	GameController.Rank.FOUR,
-	GameController.Rank.FIVE,
-	GameController.Rank.SIX,
-	GameController.Rank.SEVEN,
-	GameController.Rank.EIGHT,
-	GameController.Rank.NINE,
-	GameController.Rank.TEN,
-	GameController.Rank.J,
-	GameController.Rank.Q,
-	GameController.Rank.K,
-	GameController.Rank.A
-]
+var suits: Array[Card.Suit] = [Card.Suit.HEARTS, Card.Suit.CLUBS, Card.Suit.DIAMONDS, Card.Suit.SPADES]
+var ranks: Array[Card.Rank] = [Card.Rank.TWO, Card.Rank.THREE, Card.Rank.FOUR, Card.Rank.FIVE, Card.Rank.SIX, Card.Rank.SEVEN, Card.Rank.EIGHT, Card.Rank.NINE, Card.Rank.TEN, Card.Rank.J, Card.Rank.Q, Card.Rank.K, Card.Rank.A]
 var points: Array[int] = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
 
 
@@ -38,7 +24,7 @@ func _ready() -> void:
 	print("All card resources generated successfully!")
 
 
-func create_card_resource(index: int, suit: GameController.Suit, rank: GameController.Rank, points_val: int, atlas: Texture2D, region: Rect2) -> void:
+func create_card_resource(index: int, suit: Card.Suit, rank: Card.Rank, points_val: int, atlas: Texture2D, region: Rect2) -> void:
 	var atlas_tex: AtlasTexture = AtlasTexture.new()
 	atlas_tex.atlas = atlas
 	atlas_tex.region = region
@@ -49,5 +35,5 @@ func create_card_resource(index: int, suit: GameController.Suit, rank: GameContr
 	card_res.rank = rank
 	card_res.suit = suit
 
-	var save_path: String = OUTPUT_PATH + GameController.suit_to_string(suit) + "/" + str(index) + "_" + GameController.rank_to_string(rank) + "_" + GameController.suit_to_string(suit) + ".tres"
+	var save_path: String = OUTPUT_PATH + Card.suit_to_string(suit) + "/" + str(index) + "_" + Card.rank_to_string(rank) + "_" + Card.suit_to_string(suit) + ".tres"
 	ResourceSaver.save(card_res, save_path)

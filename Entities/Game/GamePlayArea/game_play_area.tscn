@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnlvwnnh3n5ak"]
+[gd_scene load_steps=4 format=3 uid="uid://cnlvwnnh3n5ak"]
 
 [ext_resource type="Script" uid="uid://cd8qlojapdlcl" path="res://Entities/Game/GamePlayArea/game_play_area.gd" id="1_4heis"]
-[ext_resource type="Script" uid="uid://cjfvmemp7b0rg" path="res://Entities/Game/GamePlayArea/hand_area.gd" id="2_lbhlj"]
+[ext_resource type="PackedScene" uid="uid://brdx5ma3464b1" path="res://Entities/Game/Hand/hand_ui.tscn" id="2_pa8mr"]
 [ext_resource type="FontFile" uid="uid://dykyxq17m2unc" path="res://Original Resources/fonts/m6x11plus.ttf" id="2_r5m44"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4heis"]
-bg_color = Color(0, 0, 0, 0.196078)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="GamePlayArea" type="Control"]
 layout_mode = 3
@@ -32,18 +25,8 @@ offset_bottom = 990.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HandArea" type="Control" parent="HandVBoxContainer"]
-custom_minimum_size = Vector2(0, 190)
+[node name="HandArea" parent="HandVBoxContainer" instance=ExtResource("2_pa8mr")]
 layout_mode = 2
-script = ExtResource("2_lbhlj")
-
-[node name="HandContainer" type="PanelContainer" parent="HandVBoxContainer/HandArea"]
-custom_minimum_size = Vector2(0, 190)
-layout_mode = 2
-offset_top = 4.0
-offset_right = 1090.0
-offset_bottom = 194.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4heis")
 
 [node name="HandLabel" type="Label" parent="HandVBoxContainer"]
 layout_mode = 2

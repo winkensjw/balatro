@@ -12,9 +12,6 @@
 class_name GameController
 extends Node
 
-enum Suit { SPADES, HEARTS, CLUBS, DIAMONDS }
-enum Rank { TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, J, Q, K, A }
-
 var _log: Log = Log.new("GameController")
 
 var _current_phase: Phase
@@ -36,56 +33,7 @@ var _ante_target: int = 0
 var _current_round: int = 0
 
 var _deck: Deck
-var _hand: Array[Card]
-var _max_hand_size: int = 0
-
-
-static func suit_to_string(suit: GameController.Suit) -> String:
-	match suit:
-		GameController.Suit.SPADES:
-			return "Spades"
-		GameController.Suit.HEARTS:
-			return "Hearts"
-		GameController.Suit.CLUBS:
-			return "Clubs"
-		GameController.Suit.DIAMONDS:
-			return "Diamonds"
-		_:
-			ConsoleAdapter.error("Invalid suit enum: %s" % suit)
-			return "unknown"  # Default
-
-
-static func rank_to_string(rank: GameController.Rank) -> String:
-	match rank:
-		GameController.Rank.TWO:
-			return "2"
-		GameController.Rank.THREE:
-			return "3"
-		GameController.Rank.FOUR:
-			return "4"
-		GameController.Rank.FIVE:
-			return "5"
-		GameController.Rank.SIX:
-			return "6"
-		GameController.Rank.SEVEN:
-			return "7"
-		GameController.Rank.EIGHT:
-			return "8"
-		GameController.Rank.NINE:
-			return "9"
-		GameController.Rank.TEN:
-			return "10"
-		GameController.Rank.J:
-			return "J"
-		GameController.Rank.Q:
-			return "Q"
-		GameController.Rank.K:
-			return "K"
-		GameController.Rank.A:
-			return "A"
-		_:
-			ConsoleAdapter.error("Invalid rank enum: %s" % rank)
-			return "unknown"  # Default
+var _hand: Hand
 
 
 func _init(game_setup: GameSetup) -> void:
@@ -111,9 +59,9 @@ func _init(game_setup: GameSetup) -> void:
 	set_ante_target(game_setup.get_ante_target())
 	set_current_ante(game_setup.get_ante())
 	set_current_round(game_setup.get_round())
-	set_max_hand_size(game_setup.get_max_hand_size())
 	set_deck(Deck.new(game_setup.get_deck()))
-	set_hand([])
+	set_hand(Hand.new())
+	set_max_hand_size(game_setup.get_max_hand_size())
 
 	_log.debug("GameController is ready. Starting game.")
 	start_game()
@@ -292,25 +240,25 @@ func set_deck(value: Deck) -> void:
 
 
 ## Returns the hand.
-func get_hand() -> Array[Card]:
+func get_hand() -> Hand:
 	return _hand
 
 
 ## Sets the hand.
 ## @param value: Array[Card] The new hand value.
-func set_hand(value: Array[Card]) -> void:
+func set_hand(value: Hand) -> void:
 	_hand = value
 
 
 ## Returns the max hand size.
 func get_max_hand_size() -> int:
-	return _max_hand_size
+	return _hand.get_max_hand_size()
 
 
 ## Sets the max hand size.
 ## @param value: int The new max hand size value.
 func set_max_hand_size(value: int) -> void:
-	_max_hand_size = value
+	_hand.set_max_hand_size(value)
 
 
 ## Starts the game by setting the initial phase.
@@ -349,16 +297,12 @@ func _advance_phase() -> void:
 
 
 func draw_hand() -> void:
-	while _hand.size() < _max_hand_size:
+	while _hand.can_draw(1):
 		draw_card()
 
 
 func draw_card() -> void:
-	add_card_to_hand(_deck.draw_card())
-
-
-func add_card_to_hand(card: Card) -> void:
-	_hand.append(card)
+	_hand.add_card(_deck.draw_card())
 
 
 func reset_hand_count() -> void:
@@ -371,14 +315,7 @@ func reset_discard_count() -> void:
 
 ## Returns a string representation of the GameController.
 func _to_string() -> String:
-	var hand_string: String = "["
-	for card in _hand:
-		hand_string += str(card) + ", "
-	if _hand.size() > 0:
-		hand_string = hand_string.substr(0, hand_string.length() - 2)  # Remove trailing ", "
-	hand_string += "]"
-
 	return (
 		"[GameController: Phase=%s, Score=%s, Hands=%s/%s, Discards=%s/%s, Money=%s, Ante=%s/%s, Round=%s, MaxHandSize=%s, Deck=%s, Hand=%s]"
-		% [_current_phase, _current_score, _current_hands_amount, _max_hands_amount, _current_discards_amount, _max_discards_amount, _current_money, _current_ante, _ante_target, _current_round, _max_hand_size, _deck, hand_string]
+		% [_current_phase, _current_score, _current_hands_amount, _max_hands_amount, _current_discards_amount, _max_discards_amount, _current_money, _current_ante, _ante_target, _current_round, _deck, _hand]
 	)

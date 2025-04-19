@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://brdx5ma3464b1"]
+
+[ext_resource type="Script" uid="uid://cjfvmemp7b0rg" path="res://Entities/Game/Hand/hand_ui.gd" id="1_qkc1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4heis"]
+bg_color = Color(0, 0, 0, 0.196078)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="HandUi" type="Control"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qkc1u")
+
+[node name="HandContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+offset_top = 4.0
+offset_right = 1090.0
+offset_bottom = 194.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4heis")
