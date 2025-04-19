@@ -14,16 +14,16 @@ func _ready() -> void:
 
 
 func _add_cards() -> void:
-	var markers: Array[Marker2D] = compute_markers()
-	for marker: Marker2D in markers:
+	var card_positions: Array[Vector2] = compute_card_positions()
+	for card_position: Vector2 in card_positions:
 		var card: Card = Card.new(_card_resource)
 		var card_ui: CardUi = card.get_ui()
 		add_child(card_ui)
-		card_ui.global_position = marker.global_position
-		card_ui.set_snap_back_position(marker.global_position)
+		card_ui.global_position = card_position
+		card_ui.set_snap_back_position(card_position)
 
 
-func compute_markers() -> Array[Marker2D]:
+func compute_card_positions() -> Array[Vector2]:
 	var start: Vector2 = global_position
 	start.x += _margin_px
 	var end: Vector2 = global_position
@@ -31,17 +31,17 @@ func compute_markers() -> Array[Marker2D]:
 	return compute_equidistant_positions(start, end, _cards_to_display, _card_width + 10)
 
 
-func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spacing: float) -> Array[Marker2D]:
-	var markers: Array[Marker2D] = []
+func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spacing: float) -> Array[Vector2]:
+	var positions: Array[Vector2] = []
 
 	if n <= 0:
-		return markers  # Return an empty array if n is zero or negative
+		return positions  # Return an empty array if n is zero or negative
 
 	var total_distance: float = start.distance_to(end)
 
 	if n == 1:
-		markers.append(_add_marker((start + end) / 2.0))
-		return markers
+		positions.append((start + end) / 2.0)
+		return positions
 
 	# Calculate the actual spacing based on the total distance and number of positions
 	var spacing: float = min(max_spacing, total_distance / float(n - 1))
@@ -58,11 +58,11 @@ func compute_equidistant_positions(start: Vector2, end: Vector2, n: int, max_spa
 	# Calculate the positions along the line
 	for i in range(n):
 		var current_distance: float = offset + float(i) * spacing
-		var marker_position: Vector2 = start + direction * current_distance
-		marker_position += Vector2(142, 190) / 2  # card offset
-		markers.append(_add_marker(marker_position))
+		var new_position: Vector2 = start + direction * current_distance
+		new_position += Vector2(142, 190) / 2  # card offset
+		positions.append(new_position)
 
-	return markers
+	return positions
 
 
 func _add_marker(pos: Vector2) -> Marker2D:
