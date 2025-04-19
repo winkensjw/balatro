@@ -5,6 +5,26 @@ var _log: Log = Log.new("Hand")
 
 var _max_hand_size: int = 0
 var _cards: Array[Card] = []
+var _max_selection_size: int = 5
+
+
+func _init() -> void:
+	Events.select_card.connect(_on_card_selected)
+
+
+func _on_card_selected(card: Card) -> void:
+	if !card.is_selected() && get_selected_cards().size() < _max_selection_size:
+		card.set_selected(true)
+	elif card.is_selected():
+		card.set_selected(false)
+
+
+func get_selected_cards() -> Array[Card]:
+	var res: Array[Card] = []
+	for card: Card in _cards:
+		if card.is_selected():
+			res.append(card)
+	return res
 
 
 func size() -> int:

@@ -44,4 +44,5 @@ signal round_score_changed(new_amount: int)
 signal card_drawn(drawn_card: Card)
 signal deck_added(deck: Deck)
 signal hand_changed(hand: Hand)
+signal select_card(card: Card, select: bool)
 signal game_lost

@@ -28,6 +28,9 @@ var _veldir: Vector2 = Vector2(0, 0)
 var _veldir2: Vector2 = Vector2(0, 0)
 var _oldpos: Vector2 = Vector2(0, 0)
 
+var _press_start_time := 0.0
+var _hold_threshold := 0.1
+
 ##Reference to the sprite
 @onready var _sprite: Sprite2D = $Sprite
 
@@ -58,10 +61,18 @@ func _process(delta: float) -> void:
 ## Called when the card is pressed.  Sets the card to be dragged.
 func _on_button_down() -> void:
 	_is_dragging_card = true
+	_press_start_time = Time.get_ticks_msec() / 1000.0
 
 
 func _on_button_up() -> void:
 	_is_dragging_card = false
+	var duration: float = (Time.get_ticks_msec() / 1000.0) - _press_start_time
+	if duration <= _hold_threshold:
+		_on_click()
+
+
+func _on_click() -> void:
+	Events.select_card.emit(_card)
 
 
 ## Handles input events, such as mouse motion and mouse button presses.
@@ -81,8 +92,8 @@ func _input(event: InputEvent) -> void:
 ## @return Vector2 The snap back position.
 func _get_snap_back_position() -> Vector2:
 	if snap_back_position != null:
-		return snap_back_position.global_position + _get_card_offset()
-	return Vector2.ZERO + _get_card_offset()
+		return snap_back_position.global_position + _get_card_offset() + _get_selected_offset()
+	return Vector2.ZERO + _get_card_offset() + _get_selected_offset()
 
 
 ## Sets the Marker2D that the card should snap back to.
@@ -97,6 +108,12 @@ func set_snap_back_position(pos: Vector2) -> void:
 ## @return Vector2 The card offset.
 func _get_card_offset() -> Vector2:
 	return -(Vector2(142, 190) / 2)
+
+
+func _get_selected_offset() -> Vector2:
+	if _card.is_selected():
+		return -Vector2(0, 50)
+	return Vector2.ZERO
 
 
 ## Returns the zoom factor.
@@ -132,6 +149,9 @@ func move_card(parent: Node, card_position: Vector2, instant: bool = false) -> v
 
 ## Moves the card towards the mouse position.
 func _move_card_to_mouse_pos() -> void:
+	var duration: float = (Time.get_ticks_msec() / 1000.0) - _press_start_time
+	if duration <= _hold_threshold:
+		return  # don't follow mouse to early or the cards wobble on click
 	global_position = lerp(global_position, _mousepos, 0.25)
 	rotation += clamp(_veldir.x, -0.3, 0.3)
 	rotation *= 0.8

@@ -18,6 +18,7 @@ var _card_resource: CardResource
 var _score: int
 var _suit: Suit
 var _rank: Rank
+var _selected: bool
 var _texture: AtlasTexture
 
 var _card_ui: CardUi
@@ -112,6 +113,14 @@ func get_rank() -> Rank:
 ## @param value: Card.Rank The new rank value.
 func set_rank(value: Rank) -> void:
 	_rank = value
+
+
+func is_selected() -> bool:
+	return _selected
+
+
+func set_selected(new_value: bool) -> void:
+	_selected = new_value
 
 
 ## Returns the texture of the card.
